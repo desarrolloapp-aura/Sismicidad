@@ -2,6 +2,9 @@
   "name": "sismicidad",
   "compatibility_date": "2026-10-08",
   "workers_dev": true,
+  "build": {
+    "command": "npm ci --prefix frontend-react && npm run build --prefix frontend-react"
+  },
   "assets": {
     "directory": "./frontend-react/dist",
     "not_found_handling": "single-page-application"
