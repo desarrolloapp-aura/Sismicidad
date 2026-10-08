@@ -1,0 +1,169 @@
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	background: #fff;
+	min-width: 800px;
+	font-size: 90%;
+	font-family: 'Trebuchet MS', Arial, Verdana, Georgia;
+	color: #151515;
+}
+
+img{
+    border:none;
+}
+
+a {
+	color: #369;
+}
+
+a:hover {
+	color: #fff;
+	background: #016EAB;
+	text-decoration: none;
+}
+
+h1,h2,h3 {
+	margin: 0.8em 0 0.5em 0;
+	padding: 0;
+	color: #9F5933; /*#A95C3B /*#A0503B;*/
+}
+
+p {
+	margin: .4em 0 .8em 0;
+	padding: 0;
+}
+
+input[type="checkbox"] {
+	margin: 0 4px 0 0;
+}
+
+#header {
+	clear: both;
+	float: left;
+	width: 100%;
+	background-color: #016EAB; /*#7FA7CE;*/
+	padding-top: 20px;
+	color: #fff;
+	height: 98px;
+	border-bottom: 2px solid #333;
+	min-width: 860px;
+}
+
+#header p, #header h1, #header h2 {
+	padding: 9px 11px 0 11px;
+	margin: 0;
+}
+
+#header a {
+	display: inline;
+	float: left;
+	margin: 0 0 0 0px;
+	padding: 10px 10px;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	position: relative;
+	left: 15px;
+	font-weight: normal;
+	background-color: #016EAB;
+	white-space: nowrap;
+	z-index: 1;
+}
+
+#header a:hover {
+	background-color: #fff;
+	color: #9F5933;
+}
+
+#header a.active {
+	color: #fff;
+	background: #222;
+	font-weight: bold;
+}
+
+#header a.active:hover {
+	background: #555;
+	color: #fff;
+}
+
+#header a.right {
+	float: right;
+	left: 0px;
+	border-left: 2px solid #000;
+}
+#header a.right:first {
+	margin-right: -15px;
+}
+
+#banner {
+	background: #fff url(/site_media/logo_horizontal.gif) no-repeat left
+		center;
+	color: #9F5933;
+	text-align: right;
+	padding: 8px 13px;
+	padding-top: 0em;
+	font-size: 1.2em;
+	font-weight: bold;
+	height: 52px;
+}
+
+.colmask {
+	position: relative;
+	width: 100%;
+}
+
+.sidebar {
+	width: 13.5em;
+	float: left;
+	left: 0em;
+	top: 120px;
+	background: #CDEAFF;
+	padding-left: 0.2em;
+	position: absolute;
+	margin-left: -12.1em;
+	z-index: 100;
+	clear: left;
+}
+
+#ver {
+	text-align: center;
+	padding: 0em;
+	line-height: 1.1em;
+	width: 1.4em;
+	background: url(/site_media/sectores.png) no-repeat top center;
+}
+
+#sectores a {
+	text-decoration: none;
+	color: #000;
+	font-size: 0.9em;
+	display: block;
+	padding: 2px;
+}
+
+#sectores a.active {
+	background: #016EAB;
+	color: #fff;
+}
+
+table.main {
+	text-align: center;
+	width: 100%;
+}
+
+table.main tr td{
+	padding: 10px;
+	border: 2px solid #000;
+}
+
+div.right {
+	float: right;
+	margin-right: 10px;
+}
+
+.hidden {
+	display: none;
+}
+

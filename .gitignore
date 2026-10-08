@@ -1,0 +1,34 @@
+# Dependencias y entornos
+venv/
+.venv/
+node_modules/
+dist/
+dist-ssr/
+
+# Credenciales y configuración local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+service-account*.json
+
+# Datos generados en ejecución
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+backend/data/
+*.log
+
+# Copia comprimida duplicada de la página guardada
+*.zip
+
+# Sistema
+.DS_Store
+Thumbs.db
+.idea/
+*.local

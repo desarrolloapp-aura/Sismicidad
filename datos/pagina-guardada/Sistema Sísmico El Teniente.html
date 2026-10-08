@@ -1,0 +1,3192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://10.18.18.83:8008/hdis1/resumen/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-ES"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sistema Sísmico El Teniente.</title>
+    
+    <script type="text/javascript" src="./Sistema Sísmico El Teniente._files/jquery-1.6.1.js.descarga"></script>
+    <script type="text/javascript" src="./Sistema Sísmico El Teniente._files/jquery.quicksearch.js.descarga"></script>
+    <script type="text/javascript" src="./Sistema Sísmico El Teniente._files/jquery.hoverIntent.minified.js.descarga"></script>
+    <script type="text/javascript" src="./Sistema Sísmico El Teniente._files/jquery.simplemodal.1.4.1.min.js.descarga"></script>
+    <link rel="stylesheet" type="text/css" href="./Sistema Sísmico El Teniente._files/sismico2.css">
+    <link rel="stylesheet" type="text/css" href="./Sistema Sísmico El Teniente._files/simplemodal-basic.css">
+    <script type="text/javascript" src="./Sistema Sísmico El Teniente._files/codelco.sidebar.js.descarga"></script>
+    
+<script type="text/javascript">
+<!--
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function blink() {
+    var blinks = document.getElementsByTagName('blink');
+    for (var i = blinks.length - 1; i >= 0; i--) {
+      var s = blinks[i];
+      s.style.visibility = (s.style.visibility === 'visible') ? 'hidden' : 'visible';
+    }
+    window.setTimeout(blink, 400);
+}
+  if (document.addEventListener) document.addEventListener("DOMContentLoaded", blink, false);
+  else if (window.addEventListener) window.addEventListener("load", blink, false);
+  else if (window.attachEvent) window.attachEvent("onload", blink);
+  else window.onload = blink;
+//-->
+</script>
+
+    
+    <script type="text/javascript">
+    
+	$(document).load(function(){
+		MM_preloadImages('http://vncserver.codelco.cl/CFE/fuentes/iconoev.png');
+	});
+
+    </script>
+    <script type="text/javascript">
+  //<![CDATA[
+    function display_about() {
+        $("#basic-modal-content").modal({
+            opacity: 80,
+            overlayCss: {backgroundColor:"#000"},
+            containerCss: {
+                backgroundColor: "#333",
+                color: "#bbb",
+                height: 420,
+                width: 600,
+                margin: 0,
+                textAlign: "center",
+                border: "4px solid #444"
+            }
+    	});
+    }
+    $(document).ready(function(){
+        quicksearch('input#id_search', '#sectores a');
+        showHide('.sidebar', '#ver', function(){$('input#id_search').focus(); });
+    });
+    //]]>
+    </script>
+</head>
+<body>
+<!-- modal content -->
+<div id="basic-modal-content">
+    <h3>Herramienta de Despliegue de Información Sísmica - HDIS1</h3>
+    <div>Desarrollado por:</div>
+    <h4>Superintendencia de Geomecánica<br>
+    Gerencia de Recursos Mineros y Desarrollo, División El Teniente</h4>
+    <div>Rodrigo Zepeda<br>Sergio Gaete<br>Patricio Jorquiera<br>Francisco Godoy</div>
+    <h4>Penta Analytics</h4>
+    <div>Edgard Pineda<br>Rodrigo Ojeda<br>Cristián Rojas<br>Renato Valenzuela</div>
+    <div>
+        <img class="modalLogos" src="./Sistema Sísmico El Teniente._files/aboutCodelco.png" alt="Codelco">
+        <img class="modalLogos" src="./Sistema Sísmico El Teniente._files/aboutPenta.png" alt="Penta Analytics">
+    </div>
+    <div style="font-weight:bold;">Junio 2011</div>
+</div>
+
+
+<div id="header"> 
+    <div id="banner"> 
+        <h1>Sistema Sísmico El Teniente</h1> 
+    </div>
+
+    <a href="http://10.18.18.83:8008/hdis1/dashboard/" class="inicio">Inicio</a>
+    <a href="javascript: display_about()" class="right">Acerca de...</a>
+    <a href="http://10.18.18.83:8008/site_media/Manual_Usuario_HDIS1.pdf" target="_blank" class="right">Ayuda</a>
+ 
+
+<a href="http://10.18.18.83:8008/hdis1/resumen/#" class="active">Criterio Frecuencia Eventos</a>
+
+    <!--a href="http://planif2.codelco.cl:8000/planoestaciones.html" class="right">Ver Estaciones Activas</a-->
+</div> 
+
+
+<div class="colmask">
+
+<!-- Sectores start -->
+
+      
+         
+               <span style="line-height:0.2em">&nbsp;</span>
+               <div id="more" style="float:right; border: 1px solid black; padding:0 16px">
+                   <h3 align="center">Sistema Sísmico IMS</h3>
+                   <p align="left">
+                      Estado: <b>Operando OK
+</b><br>
+                      Actualización 2026/09/24 13:35:01
+
+                   </p>
+               </div>
+         
+      
+
+
+
+      <h1 align="center">Estado Actual por Polígonos Sectores Mina</h1>
+      <h2 align="center">Con Proceso de Picado Automático y Sin Prioridad</h2>
+      <p align="center"><em><var>Fecha y Hora Proceso : <img src="./Sistema Sísmico El Teniente._files/fechaproceso.png" width="200" height="30"></var></em></p>
+<table width="100" border="1" align="center">
+  <tbody><tr> 
+    <td width="173" rowspan="2" nowrap=""> 
+      <div align="center">POLÍGONOS SECTORES</div>
+
+    </td>
+    <td rowspan="2" width="61"> 
+      <div align="center">ESTADO</div>
+    </td>
+    <td colspan="6"> 
+      <div align="center">ÚLTIMAS 24 HORAS</div>
+    </td>
+    <td colspan="6"> 
+      <div align="center">ÚLTIMOS 7 DÍAS</div>
+
+    </td>
+  </tr>
+  <tr> 
+
+    <td width="78" nowrap="" height="32">GRAFICOS</td>
+
+
+    <td nowrap="" width="60" height="32"> 
+      <div align="center">FREC</div>
+    </td>
+    <td width="47" nowrap="" height="32"> 
+      <div align="center"> -MAG</div>
+
+    </td>
+    <td width="45" nowrap="" height="32"> 
+      <div align="center">+MAG</div>
+    </td>
+    <td width="41" nowrap="" height="32"> 
+      <div align="center">-Z</div>
+    </td>
+    <td width="41" nowrap="" height="32"> 
+      <div align="center">+Z</div>
+
+    </td>
+
+    <td width="78" nowrap="" height="32"> 
+      <p align="center">GRAFICOS</p>
+    </td>
+
+    <td width="60" nowrap="" height="32"> 
+      <div align="center">FREC</div>
+    </td>
+    <td width="47" nowrap="" height="32"> 
+      <div align="center">-MAG</div>
+
+    </td>
+    <td width="45" nowrap="" height="32"> 
+      <div align="center">+MAG</div>
+    </td>
+    <td width="41" nowrap="" height="32"> 
+      <div align="center">-Z</div>
+    </td>
+    <td width="41" nowrap="" height="32"> 
+      <div align="center">+Z</div>
+
+    </td>
+  </tr>
+
+  
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/DesarrollosAdit50_59/202609241310_esp_eve_sism.png">ADIT 50_59 Desarrollos</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado.png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DesarrollosAdit50_59/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h.png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h.png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h.png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h.png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h.png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DesarrollosAdit50_59/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d.png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d.png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d.png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d.png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d.png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PortalAdit50_59/202609241310_esp_eve_sism.png">ADIT 50_59 Portal</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(1).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PortalAdit50_59/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(1).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(1).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(1).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(1).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(1).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PortalAdit50_59/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(1).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(1).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(1).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(1).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(1).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AN_Inicio_Caving/202609241310_esp_eve_sism.png">AN Inicio Caving</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(2).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Inicio_Caving/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(2).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(2).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(2).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(2).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(2).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Inicio_Caving/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(2).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(2).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(2).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(2).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(2).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_FW/202609241310_esp_eve_sism.png">AN Norte-Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(3).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_FW/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(3).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(3).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(3).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(3).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(3).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_FW/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(3).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(3).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(3).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(3).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(3).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_HW/202609241310_esp_eve_sism.png">AN Norte-Hw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(4).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_HW/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(4).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(4).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(4).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(4).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(4).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Norte_HW/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(4).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(4).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(4).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(4).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(4).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AN_Sur_HW/202609241310_esp_eve_sism.png">AN Sur-Hw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(5).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Sur_HW/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(5).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(5).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(5).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(5).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(5).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AN_Sur_HW/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(5).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(5).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(5).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(5).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(5).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaDesarrollos/202609241310_esp_eve_sism.png">Andesita Desarrollos</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(6).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaDesarrollos/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(6).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(6).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(6).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(6).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(6).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaDesarrollos/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(6).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(6).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(6).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(6).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(6).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaExplotacion/202609241310_esp_eve_sism.png">Andesita Explotación</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(7).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaExplotacion/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(7).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(7).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(7).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(7).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(7).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaExplotacion/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(7).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(7).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(7).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(7).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(7).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaFw/202609241310_esp_eve_sism.png">Andesita Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(8).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaFw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(8).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(8).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(8).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(8).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(8).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaFw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(8).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(8).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(8).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(8).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(8).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaInstalaciones/202609241310_esp_eve_sism.png">Andesita Instalaciones</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(9).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaInstalaciones/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(9).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(9).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(9).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(9).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(9).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaInstalaciones/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(9).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(9).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(9).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(9).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(9).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteFw/202609241310_esp_eve_sism.png">Andesita Norte Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(10).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteFw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(10).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(10).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(10).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(10).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(10).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteFw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(10).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(10).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(10).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(10).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(10).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteHw/202609241310_esp_eve_sism.png">Andesita Norte Hw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(11).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteHw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(11).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(11).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(11).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(11).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(11).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaNorteHw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(11).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(11).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(11).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(11).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(11).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurFw/202609241310_esp_eve_sism.png">Andesita Sur Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(12).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurFw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(12).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(12).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(12).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(12).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(12).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurFw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(12).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(12).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(12).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(12).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(12).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurHw/202609241310_esp_eve_sism.png">Andesita Sur Hw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(13).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurHw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(13).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(13).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(13).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(13).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(13).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaSurHw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(13).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(13).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(13).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(13).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(13).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/AndesitaXCHWTTE8/202609241310_esp_eve_sism.png">Andesita XC-Hw Tte8</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(14).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaXCHWTTE8/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(14).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(14).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(14).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(14).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(14).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/AndesitaXCHWTTE8/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(14).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(14).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(14).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(14).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(14).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Andes_Norte/202609241310_esp_eve_sism.png">Bajo Andes Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(15).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Andes_Norte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(15).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(15).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(15).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(15).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(15).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Andes_Norte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(15).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(15).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(15).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(15).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(15).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Diamante_Esmeralda/202609241310_esp_eve_sism.png">Bajo Diamante Esmeralda</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(16).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Diamante_Esmeralda/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(16).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(16).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(16).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(16).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(16).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Bajo_Diamante_Esmeralda/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(16).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(16).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(16).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(16).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(16).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/DacitaCentro/202609241310_esp_eve_sism.png">Dacita Centro</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(17).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaCentro/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(17).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(17).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(17).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(17).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(17).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaCentro/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(17).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(17).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(17).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(17).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(17).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/DacitaNorte/202609241310_esp_eve_sism.png">Dacita Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(18).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaNorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(18).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(18).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(18).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(18).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(18).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaNorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(18).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(18).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(18).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(18).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(18).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/DacitaSur/202609241310_esp_eve_sism.png">Dacita Sur</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(19).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaSur/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(19).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(19).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(19).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(19).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(19).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DacitaSur/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(19).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(19).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(19).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(19).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(19).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseI/202609241310_esp_eve_sism.png">Diablo Regimiento Fase I</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(20).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseI/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(20).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(20).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(20).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(20).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(20).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseI/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(20).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(20).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(20).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(20).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(20).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/diabloregsurfaseii/202609241310_esp_eve_sism.png">Diablo Regimiento Fase II Sur</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(21).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregsurfaseii/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(21).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(21).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(21).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(21).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(21).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregsurfaseii/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(21).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(21).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(21).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(21).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(21).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIII/202609241310_esp_eve_sism.png">Diablo Regimiento Fase III</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(22).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIII/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(22).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(22).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(22).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(22).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(22).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIII/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(22).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(22).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(22).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(22).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(22).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIV/202609241310_esp_eve_sism.png">Diablo Regimiento Fase IV</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(23).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIV/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(23).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(23).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(23).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(23).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(23).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseIV/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(23).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(23).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(23).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(23).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(23).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseV/202609241310_esp_eve_sism.png">Diablo Regimiento Fase V</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(24).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseV/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(24).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(24).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(24).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(24).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(24).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/diabloregFaseV/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(24).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(24).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(24).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(24).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(24).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Fw/202609241310_esp_eve_sism.png">Diamante FootPrint Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(25).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Fw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(25).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(25).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(25).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(25).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(25).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Fw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(25).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(25).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(25).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(25).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(25).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Hw/202609241310_esp_eve_sism.png">Diamante FootPrint Hw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(26).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Hw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(26).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(26).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(26).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(26).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(26).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Diamante_FootPrint_Hw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(26).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(26).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(26).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(26).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(26).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/DiamantePipa/202609241310_esp_eve_sism.png">Diamante Pipa</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(27).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DiamantePipa/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(27).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(27).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(27).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(27).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(27).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/DiamantePipa/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(27).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(27).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(27).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(27).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(27).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmbloque1/202609241310_esp_eve_sism.png">Esmeralda Bloque 1</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(28).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque1/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(28).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(28).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(28).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(28).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(28).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque1/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(28).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(28).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(28).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(28).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(28).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl/202609241310_esp_eve_sism.png">Esmeralda Bloque 2 Bajo UCL (al Norte XC48) </a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(29).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(29).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(29).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(29).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(29).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(29).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(29).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(29).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(29).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(29).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(29).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl_sur/202609241310_esp_eve_sism.png">Esmeralda Bloque 2 Bajo UCL (al Sur XC48)</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(30).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl_sur/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(30).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(30).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(30).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(30).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(30).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_bajo_ucl_sur/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(30).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(30).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(30).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(30).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(30).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_sobre_ucl/202609241310_esp_eve_sism.png">Esmeralda Bloque 2 sobre UCL</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(31).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_sobre_ucl/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(31).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(31).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(31).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(31).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(31).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmbloque2_sobre_ucl/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(31).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(31).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(31).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(31).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(31).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmextensionfwbloque2/202609241310_esp_eve_sism.png">Esmeralda Extension Fw Bloque 2</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(32).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmextensionfwbloque2/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(32).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(32).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(32).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(32).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(32).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmextensionfwbloque2/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(32).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(32).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(32).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(32).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(32).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmextensionntebloque2/202609241310_esp_eve_sism.png">Esmeralda Extension Norte Bloque 2</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(33).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmextensionntebloque2/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(33).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(33).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(33).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(33).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(33).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmextensionntebloque2/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(33).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(33).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(33).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(33).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(33).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmInterzanjaC49_55/202609241310_esp_eve_sism.png">Esmeralda Interzanja C 49 a C 55</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(34).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmInterzanjaC49_55/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(34).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(34).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(34).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(34).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(34).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmInterzanjaC49_55/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(34).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(34).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(34).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(34).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(34).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmpanel1/202609241310_esp_eve_sism.png">Esmeralda Panel 1</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(35).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpanel1/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(35).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(35).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(35).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(35).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(35).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpanel1/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(35).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(35).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(35).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(35).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(35).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmpanel2/202609241310_esp_eve_sism.png">Esmeralda Panel 2</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(36).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpanel2/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(36).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(36).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(36).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(36).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(36).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpanel2/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(36).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(36).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(36).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(36).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(36).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmpoldesbloque6/202609241310_esp_eve_sism.png">Esmeralda Poligono Desarrollo Bloque6</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(37).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpoldesbloque6/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(37).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(37).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(37).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(37).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(37).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmpoldesbloque6/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(37).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(37).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(37).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(37).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(37).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/esmsur/202609241310_esp_eve_sism.png">Esmeralda Sur</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(38).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmsur/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(38).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(38).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(38).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(38).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(38).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/esmsur/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(38).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(38).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(38).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(38).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(38).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/exthwpipanorte/202609241310_esp_eve_sism.png">Extension HW Pipa Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(39).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/exthwpipanorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(39).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(39).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(39).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(39).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(39).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/exthwpipanorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(39).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(39).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(39).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(39).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(39).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PanelRenoExtNorte/202609241310_esp_eve_sism.png">Extension Norte Panel Reno</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(40).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelRenoExtNorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(40).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(40).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(40).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(40).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(40).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelRenoExtNorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(40).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(40).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(40).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(40).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(40).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PolMonPostEvento2025/202609241310_esp_eve_sism.png">Monitoreo Post Evento 2025</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(41).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PolMonPostEvento2025/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(41).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(41).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(41).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(41).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(41).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PolMonPostEvento2025/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(41).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(41).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(41).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(41).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(41).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Fw/202609241310_esp_eve_sism.png">Monitoreo Reparaciones PAN FW</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(42).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Fw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(42).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(42).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(42).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(42).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(42).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Fw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(42).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(42).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(42).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(42).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(42).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Hw/202609241310_esp_eve_sism.png">Monitoreo Reparaciones PAN HW</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(43).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Hw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(43).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(43).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(43).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(43).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(43).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/monitoreo_reparaciones_pan_Hw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(43).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(43).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(43).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(43).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(43).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiornorte/202609241310_esp_eve_sism.png">Pacifico Superior Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(44).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiornorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(44).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(44).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(44).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(44).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(44).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiornorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(44).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(44).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(44).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(44).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(44).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiorsur/202609241310_esp_eve_sism.png">Pacifico Superior Sur</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(45).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiorsur/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(45).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(45).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(45).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(45).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(45).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/pacificosuperiorsur/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(45).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(45).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(45).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(45).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(45).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PanelInvariante/202609241310_esp_eve_sism.png">Panel Invariante</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(46).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelInvariante/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(46).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(46).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(46).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(46).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(46).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelInvariante/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(46).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(46).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(46).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(46).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(46).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PanelReno/202609241310_esp_eve_sism.png">Panel Reno</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(47).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelReno/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(47).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(47).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(47).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(47).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(47).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelReno/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(47).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(47).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(47).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(47).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(47).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PilarNorteLadoCorbata/202609241310_esp_eve_sism.png">Pilar Norte Lado Corbata</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(48).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PilarNorteLadoCorbata/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(48).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(48).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(48).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(48).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(48).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PilarNorteLadoCorbata/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(48).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(48).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(48).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(48).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(48).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PoligonoMonPostEvento/202609241310_esp_eve_sism.png">Poligono Monitoreo Post Evento</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(49).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PoligonoMonPostEvento/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(49).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(49).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(49).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(49).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(49).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PoligonoMonPostEvento/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(49).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(49).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(49).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(49).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(49).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PanelInv_Tte8/202609241310_esp_eve_sism.png">Poligono Panel Inv TTE-8</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(50).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelInv_Tte8/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(50).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(50).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(50).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(50).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(50).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PanelInv_Tte8/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(50).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(50).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(50).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(50).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(50).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/PoligonoPostEventoFw/202609241310_esp_eve_sism.png">Poligono Post Evento Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(51).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PoligonoPostEventoFw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(51).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(51).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(51).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(51).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(51).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/PoligonoPostEventoFw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(51).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(51).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(51).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(51).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(51).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Poligono_Trab_C23_Z40/202609241310_esp_eve_sism.png">Poligono Trabajo C23 Z40</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(52).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Poligono_Trab_C23_Z40/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(52).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(52).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(52).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(52).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(52).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Poligono_Trab_C23_Z40/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(52).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(52).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(52).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(52).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(52).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Tte8_AndesNorte/202609241310_esp_eve_sism.png">Poligono TTE-8 Andes Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(53).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Tte8_AndesNorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(53).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(53).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(53).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(53).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(53).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Tte8_AndesNorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(53).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(53).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(53).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(53).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(53).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/RampaAdit74aTte8/202609241310_esp_eve_sism.png">Rampa Adit 74 a Tte8 Proyecto Recursos Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(54).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/RampaAdit74aTte8/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(54).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(54).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(54).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(54).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(54).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/RampaAdit74aTte8/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(54).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(54).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(54).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(54).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(54).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/RENOFw/202609241310_esp_eve_sism.png">RENO Fw</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(55).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/RENOFw/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(55).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(55).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(55).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(55).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(55).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/RENOFw/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(55).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(55).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(55).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(55).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(55).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Reno_RecursosNorte/202609241310_esp_eve_sism.png">Reno Recursos Norte</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(56).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Reno_RecursosNorte/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(56).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(56).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(56).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(56).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(56).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Reno_RecursosNorte/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(56).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(56).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(56).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(56).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(56).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/SocInt_SocHwNTI/202609241310_esp_eve_sism.png">Soc Int / Soc Hw NTI</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(57).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/SocInt_SocHwNTI/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(57).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(57).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(57).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(57).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(57).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/SocInt_SocHwNTI/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(57).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(57).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(57).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(57).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(57).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/totalmina/202609241310_esp_eve_sism.png">Total Mina</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(58).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/totalmina/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(58).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(58).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(58).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(58).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(58).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/totalmina/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(58).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(58).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(58).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(58).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(58).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Zona_Centro_Sur_Rep/202609241310_esp_eve_sism.png">Zona Centro Sur Rep</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(59).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Zona_Centro_Sur_Rep/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(59).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(59).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(59).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(59).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(59).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Zona_Centro_Sur_Rep/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(59).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(59).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(59).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(59).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(59).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+  <tr> 
+    <td width="173" nowrap=""><a href="http://10.18.18.83:8008/site_media//graph/Zona_HW_Norte_Rep/202609241310_esp_eve_sism.png">Zona HW Norte Rep</a></td>
+    <td width="61"> 
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(60).png" width="60" height="23"></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Zona_HW_Norte_Rep/202609241310_crit_frec_sem.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td width="41"> 
+      <div align="center"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia24h(60).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="80"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag24h(60).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag24h(60).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz24h(60).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz24h(60).png" width="40" height="23"></em></div>
+    </td>
+
+    <td width="78"> 
+      <div align="center"><a href="http://10.18.18.83:8008/site_media//graph/Zona_HW_Norte_Rep/202609241310_crit_frec_mens.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image2761&#39;,&#39;&#39;,&#39;http://vncserver.codelco.cl/CFE/fuentes/iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="http://vncserver.codelco.cl/CFE/fuentes/iconoli.png"></a> </div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/frecuencia7d(60).png" width="40" height="23"></em></div>
+
+    </td>
+    <td align="right" width="42"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minmag7d(60).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="45"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxmag7d(60).png" width="40" height="23"></em></div>
+    </td>
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/minz7d(60).png" width="40" height="23"></em></div>
+    </td>
+
+    <td align="right" width="41"> 
+      <div align="right"><em><img src="./Sistema Sísmico El Teniente._files/maxz7d(60).png" width="40" height="23"></em></div>
+    </td>
+  </tr>
+ 
+
+</tbody></table>
+
+<p align="center"><font color="#CCCCCC"></font></p>
+
+   
+     
+      <h1 align="center"><font color="#000666">Criterio Triggers Eventos</font></h1>
+  
+      <p align="center"><em><var>Fecha y Hora Proceso : <img src="./Sistema Sísmico El Teniente._files/fechaproceso(1).png" width="200" height="30"></var></em></p>
+<table width="500" border="1" align="center">
+  <tbody><tr> 
+    <td width="173" rowspan="1" nowrap=""> 
+      <div align="center">POLÍGONOS SECTORES</div>
+
+    </td>
+    <td rowspan="1" width="61"> 
+      <div align="center">ESTADO</div>
+    </td>
+    <td colspan="30"> 
+      <div align="center">ÚLTIMAS 24 HORAS</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="173" nowrap=""><a href="http://10.18.18.83/CFTIMSTRON/datos/sectores/PilarNorte/planoPilarNortePicAut.png">Pilar Norte</a></td>
+
+    <td width="61">
+      <div align="center"><img src="./Sistema Sísmico El Teniente._files/estado(61).png" width="60" height="23"></div>
+    </td>
+    <td width="78">
+      <div align="center"><a href="http://10.18.18.83/CFTIMSTRON/datos/sectores/PilarNorte/ultimo_diario_cfetriggers.png" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image27617&#39;,&#39;&#39;,&#39;iconoev.png&#39;,1)"><img name="Image276" border="0" width="25" height="19" src="./Sistema Sísmico El Teniente._files/iconoev.png"></a>
+       </div>
+    </td>
+  </tr>
+
+
+</tbody></table>
+
+<h1 align="center"><font color="#000666">  </font></h1><table width="500" border="1" align="center">
+      
+</table>
+
+
+</div>
+ 
+ 
+</body></html>

@@ -1,0 +1,51 @@
+
+var lastFocus;
+var iPad = navigator.platform.indexOf("iPad") != -1 || navigator.platform.indexOf("iPhone") != -1 || navigator.platform.indexOf("iPod") != -1;
+
+function _show(show_elem, hide_elem, afterShow){
+    $(show_elem).animate({marginLeft:0}, 'fast');
+    $(hide_elem).hide();
+    if (!iPad){
+        lastFocus = $("*:focus");
+        if(afterShow && typeof afterShow == 'function')
+            afterShow();
+    }else{
+        $('.colmask').focus();
+    }
+}
+
+function _hide(show_elem, hide_elem){
+    $(show_elem).animate({marginLeft:'-12.1em'}, 'fast', function(){$(hide_elem).show()});
+    if(!iPad && lastFocus) lastFocus.focus();
+}
+
+function showHide(show_elem, hide_elem, afterShow){
+    if (iPad){
+        var hide_fun = function(){
+            _hide(show_elem, hide_elem);
+            $('.colmask, #header, html').unbind('click', hide_fun);
+        };
+        
+        $(show_elem).click(function(e){
+            _show(show_elem, hide_elem, afterShow);
+            e.stopPropagation();
+            $('.colmask, #header, html').click(hide_fun);
+        });
+    }else{
+        $(show_elem).hoverIntent({
+            over: function(){
+                _show(show_elem, hide_elem, afterShow);
+            },
+            out: function(){
+                _hide(show_elem, hide_elem);
+            },
+            timeout:100
+        });
+    }
+}
+
+function quicksearch(input, list){
+    $(input).quicksearch(list);
+    $(input).keypress(function(e){if(e.keyCode==13) return false;});
+}
+

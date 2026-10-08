@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend (API :8030)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "\"${workspaceFolder}\\venv\\Scripts\\python.exe\" -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8030",
+      "cwd": "${workspaceFolder}/backend"
+    },
+    {
+      "name": "Frontend (Vite :5200)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev -- --host 127.0.0.1 --port 5200 --strictPort",
+      "cwd": "${workspaceFolder}/frontend-react"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Sismicidad local",
+      "configurations": ["Backend (API :8030)", "Frontend (Vite :5200)"],
+      "stopAll": true
+    }
+  ]
+}
