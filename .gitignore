@@ -32,3 +32,10 @@ backend/data/
 Thumbs.db
 .idea/
 *.local
+
+# Puente hacia la mina: se copia en la carpeta, no se publica
+cloudflared.exe
+python-portable/
+puente.secreto
+puente-cloudflared.log
+.wrangler/

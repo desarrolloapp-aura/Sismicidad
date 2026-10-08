@@ -1,5 +1,6 @@
 {
   "name": "sismicidad",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-08",
   "workers_dev": true,
   "build": {
@@ -7,6 +8,13 @@
   },
   "assets": {
     "directory": "./frontend-react/dist",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATOS",
+      "id": "dff12494a72f435889ca1e30af8b0cb1"
+    }
+  ]
 }

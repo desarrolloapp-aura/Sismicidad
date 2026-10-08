@@ -11,7 +11,17 @@ export function useSectores() {
   const fetchSectores = async () => {
     try {
       const res = await fetch(`${API_BASE}/api/sectores/estado-actual`);
-      if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+      if (!res.ok) {
+        let detalle = `Error HTTP: ${res.status}`;
+        try {
+          const cuerpo = await res.json();
+          if (cuerpo.error) detalle = cuerpo.error;
+          else if (cuerpo.detail) detalle = cuerpo.detail;
+        } catch {
+          /* la respuesta no trae un mensaje */
+        }
+        throw new Error(detalle);
+      }
       const data = await res.json();
       setReporte(data);
       setError(null);
