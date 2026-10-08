@@ -28,7 +28,7 @@ router = APIRouter(prefix="/api/sectores", tags=["Sectores Sísmicos"])
 async def get_estado_actual():
     """
     Retorna el último reporte scrapeado (cacheado en memoria).
-    Responde instantáneamente sin consultar GeoVita ni la DB.
+    Responde instantáneamente sin consultar Codelco ni la base de datos.
     Si no hay datos aún (primer arranque), hace un scraping en el momento.
     """
     reporte = get_ultimo_reporte()
@@ -39,7 +39,7 @@ async def get_estado_actual():
         reporte = get_ultimo_reporte()
 
     if reporte is None:
-        raise HTTPException(status_code=503, detail="No se pudo obtener datos de GeoVita")
+        raise HTTPException(status_code=503, detail="No se pudo leer la tabla de Codelco")
 
     return reporte
 
@@ -47,13 +47,13 @@ async def get_estado_actual():
 @router.get("/forzar-update", response_model=ReporteActual, summary="Forzar actualización inmediata")
 async def forzar_actualizacion():
     """
-    Fuerza un scraping inmediato de GeoVita, sin esperar el ciclo del scheduler.
+    Fuerza una lectura inmediata de Codelco, sin esperar el ciclo de un minuto.
     Útil para pruebas o cuando se necesita dato fresco urgente.
     """
     await _ejecutar_scraping()
     reporte = get_ultimo_reporte()
     if reporte is None:
-        raise HTTPException(status_code=503, detail="No se pudo obtener datos de GeoVita")
+        raise HTTPException(status_code=503, detail="No se pudo leer la tabla de Codelco")
     return reporte
 
 

@@ -48,7 +48,7 @@ class SectorSnapshot(Base):
     z_max_7d = Column(String, nullable=True)
 
     # Metadatos del scraping
-    timestamp_geovita = Column(DateTime, nullable=True)     # Timestamp que GeoVita reporta
+    timestamp_geovita = Column(DateTime, nullable=True)     # Hora que informa la tabla de Codelco
     timestamp_scraping = Column(DateTime, server_default=func.now(), nullable=False)  # Cuándo lo capturamos
 
     def __repr__(self):

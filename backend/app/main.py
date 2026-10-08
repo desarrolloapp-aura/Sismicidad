@@ -1,6 +1,6 @@
 """
 Punto de entrada principal de la aplicación FastAPI.
-Monitoreo Sísmico - Mina El Teniente (Plataforma GeoVita)
+Monitoreo Sísmico - Mina El Teniente
 """
 
 import logging

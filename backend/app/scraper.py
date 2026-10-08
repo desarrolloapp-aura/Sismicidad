@@ -240,5 +240,5 @@ async def scrapear_sismicidad() -> ReporteActual:
 
 
 async def scrapear_geovita() -> ReporteActual:
-    """Nombre anterior. La fuente ahora es el sistema de Codelco."""
+    """Lee el sistema sísmico de Codelco."""
     return await scrapear_sismicidad()

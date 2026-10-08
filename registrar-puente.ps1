@@ -5,7 +5,7 @@ Set-Location $root
 $pagina = "https://sismicidad.desarrolloapp.workers.dev"
 $secretoPath = Join-Path $root "puente.secreto"
 $cloudflared = Join-Path $root "cloudflared.exe"
-$log = Join-Path $root "puente-cloudflared.log"
+$log = Join-Path $env:TEMP "puente-cloudflared.log"
 
 Write-Host ""
 Write-Host "Deja esta ventana abierta. Si la cierras, se corta el puente."
@@ -36,7 +36,7 @@ $env:SISMICO_MODO = "mina"
 Start-Process -FilePath "cmd.exe" -ArgumentList "/k", "set SISMICO_MODO=mina&& `"$python`" -m uvicorn app.main:app --host 127.0.0.1 --port 8030" -WorkingDirectory (Join-Path $root "backend")
 
 if (Test-Path $log) { Remove-Item $log -Force }
-Start-Process -FilePath $cloudflared -ArgumentList @("tunnel", "--url", "http://127.0.0.1:8030", "--logfile", $log, "--loglevel", "info")
+Start-Process -FilePath $cloudflared -ArgumentList "tunnel --url http://127.0.0.1:8030 --logfile `"$log`" --loglevel info"
 
 $direccion = $null
 for ($i = 0; $i -lt 45; $i++) {

@@ -1,6 +1,6 @@
 """
 Scheduler de background tasks.
-Corre el scraper de GeoVita automáticamente cada 60 segundos
+Lee la tabla de Codelco automáticamente cada 60 segundos
 y guarda los resultados en la base de datos SQLite.
 """
 
@@ -38,7 +38,7 @@ async def _traer_desde_puente() -> ReporteActual:
 
 async def _ejecutar_scraping():
     """
-    Tarea periódica: scrapea GeoVita y persiste en SQLite.
+    Tarea periódica: lee Codelco y guarda el resultado en SQLite.
     """
     global ultimo_reporte
 
@@ -100,8 +100,8 @@ def iniciar_scheduler():
     scheduler.add_job(
         _ejecutar_scraping,
         trigger=IntervalTrigger(seconds=60),
-        id="scraping_geovita",
-        name="Scraping GeoVita",
+        id="lectura_codelco",
+        name="Lectura Codelco",
         replace_existing=True,
         max_instances=1,        # Evita ejecuciones solapadas
     )
