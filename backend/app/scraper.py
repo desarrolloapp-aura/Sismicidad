@@ -75,7 +75,7 @@ def _imagenes_zip() -> dict[str, bytes]:
 
 def _bytes_imagen_local(src: str) -> bytes | None:
     nombre = Path(src.split("?")[0]).name.lower()
-    carpeta = _pagina_guardada().parent / (_pagina_guardada().stem + "_files")
+    carpeta = _pagina_guardada().parent / (_pagina_guardada().stem + "._files")
     directa = carpeta / Path(src).name
     if directa.is_file():
         return directa.read_bytes()

@@ -1,3 +1,5 @@
+import prueba from "./datos-prueba.json";
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -44,17 +46,29 @@ async function guardarPuente(request, env) {
 
 async function reenviar(request, env, url) {
   const puente = await env.DATOS.get("url");
-  if (!puente) {
-    return Response.json(
-      { error: "El computador de la mina todavía no está conectado." },
-      { status: 503 },
-    );
+  if (puente) {
+    try {
+      const destino = new URL(url.pathname + url.search, puente);
+      const respuesta = await fetch(destino.toString(), { method: "GET" });
+      if (respuesta.ok) {
+        const headers = new Headers(respuesta.headers);
+        headers.delete("content-encoding");
+        headers.delete("content-length");
+        return new Response(respuesta.body, { status: respuesta.status, headers });
+      }
+    } catch {
+      /* el computador de la mina no respondió */
+    }
   }
+  return copiaDePrueba(url);
+}
 
-  const destino = new URL(url.pathname + url.search, puente);
-  const respuesta = await fetch(destino.toString(), { method: "GET" });
-  const headers = new Headers(respuesta.headers);
-  headers.delete("content-encoding");
-  headers.delete("content-length");
-  return new Response(respuesta.body, { status: respuesta.status, headers });
+function copiaDePrueba(url) {
+  if (url.pathname === "/api/sectores/estado-actual" || url.pathname === "/api/sectores/forzar-update") {
+    return Response.json(prueba);
+  }
+  if (url.pathname.endsWith("/tendencia")) {
+    return Response.json([]);
+  }
+  return Response.json({ total: 0, page: 1, page_size: 50, datos: [] });
 }
