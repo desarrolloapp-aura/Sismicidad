@@ -1,4 +1,4 @@
-import { GraficoPrueba } from './GraficoPrueba';
+import { Tendencia } from './Tendencia';
 import { Icono, TRAZOS } from './Icono';
 import { fechaCorta } from '../fechas';
 
@@ -140,7 +140,10 @@ export function Resumen({ reporte, error, onAbrir }) {
         </div>
       </div>
 
-      <GraficoPrueba nombreInicial="Bajo Diamante Esmeralda" />
+      <Tendencia
+        poligonos={sectores.map((s) => s.nombre)}
+        inicial={(sectores.find((s) => s.principal) || sectores[0])?.nombre}
+      />
     </section>
   );
 }

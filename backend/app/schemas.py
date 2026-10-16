@@ -3,8 +3,8 @@ Schemas Pydantic para validación y serialización de datos.
 Define la estructura de los datos que viajan por la API.
 """
 
-from pydantic import BaseModel
-from datetime import datetime
+from pydantic import BaseModel, field_validator
+from datetime import datetime, timezone
 from typing import Optional, List
 
 
@@ -74,6 +74,12 @@ class SectorSnapshotOut(BaseModel):
     z_max_7d: Optional[str] = None
     timestamp_geovita: Optional[datetime]
     timestamp_scraping: datetime
+
+    @field_validator("timestamp_scraping")
+    @classmethod
+    def _en_utc(cls, valor: datetime) -> datetime:
+        # SQLite devuelve la hora sin zona; se guardó en UTC.
+        return valor.replace(tzinfo=timezone.utc) if valor.tzinfo is None else valor
 
     class Config:
         from_attributes = True

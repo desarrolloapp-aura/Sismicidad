@@ -8,11 +8,11 @@ Endpoints disponibles:
 """
 
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import desc
+from sqlalchemy import asc, desc, func
 
 from app.database import get_db
 from app.models import SectorSnapshot
@@ -132,12 +132,35 @@ def get_historial_sector(
 def get_tendencia_sector(
     nombre_sector: str,
     limit: int = Query(default=60, ge=1, le=1440, description="Puntos de datos a retornar (ej. últimos 60 minutos)"),
+    horas: Optional[int] = Query(default=None, ge=1, le=744, description="Ventana en horas; reemplaza a limit"),
+    puntos: int = Query(default=400, ge=10, le=2000, description="Máximo de puntos cuando se usa horas"),
     db: Session = Depends(get_db),
 ):
     """
     Retorna los últimos 'limit' registros de un sector en orden CRONOLÓGICO ascendente.
+    Con 'horas', retorna la ventana completa reducida a 'puntos', sin perder los cambios de estado.
     Ideal para dibujar gráficos de líneas de evolución temporal.
     """
+    if horas is not None:
+        desde = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=horas)
+        registros = (
+            db.query(SectorSnapshot)
+            .filter(func.lower(SectorSnapshot.nombre) == nombre_sector.lower())
+            .filter(SectorSnapshot.timestamp_scraping >= desde)
+            .order_by(asc(SectorSnapshot.timestamp_scraping))
+            .all()
+        )
+        if len(registros) > puntos:
+            paso = len(registros) / puntos
+            indices = {int(i * paso) for i in range(puntos)}
+            indices.add(len(registros) - 1)
+            indices.update(
+                i for i in range(1, len(registros))
+                if registros[i].estado != registros[i - 1].estado
+            )
+            registros = [registros[i] for i in sorted(indices)]
+        return [SectorSnapshotOut.model_validate(r) for r in registros]
+
     query = db.query(SectorSnapshot).filter(
         SectorSnapshot.nombre.ilike(f"%{nombre_sector}%")
     )
