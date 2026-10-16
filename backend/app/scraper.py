@@ -14,6 +14,7 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 import httpx
 from bs4 import BeautifulSoup
@@ -27,6 +28,8 @@ logger = logging.getLogger(__name__)
 
 CODELCO_URL = "http://10.18.18.83:8008/hdis1/resumen/"
 PROYECTO = Path(__file__).resolve().parents[2]
+# La hora de "Actualización" que publica Codelco viene en hora de Chile.
+HORA_CHILE = ZoneInfo("America/Santiago")
 
 HEADERS = {
     "User-Agent": (
@@ -109,8 +112,8 @@ def _texto_actualizacion(soup: BeautifulSoup) -> datetime | None:
         return None
     try:
         return datetime.strptime(f"{match.group(1)} {match.group(2)}", "%Y/%m/%d %H:%M:%S").replace(
-            tzinfo=timezone.utc
-        )
+            tzinfo=HORA_CHILE
+        ).astimezone(timezone.utc)
     except ValueError:
         return None
 

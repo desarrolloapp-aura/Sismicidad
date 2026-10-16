@@ -92,7 +92,10 @@ async def _ejecutar_scraping():
             reporte = await scrapear_geovita()
         ultimo_reporte = reporte
 
-        # Guardar en base de datos
+        if reporte.fuente != "en_vivo":
+            logger.info("Se usa la copia guardada; no se agrega al historial.")
+            return
+
         db = SessionLocal()
         try:
             for sector in reporte.sectores:
