@@ -3,7 +3,6 @@ import { Resumen } from './components/Resumen';
 import { Monitoreo } from './components/Monitoreo';
 import { Graficos } from './components/Graficos';
 import { Historial } from './components/Historial';
-import { Admin } from './components/Admin';
 import { useSectores } from './hooks/useSectores';
 
 function Icono({ children }) {
@@ -45,14 +44,6 @@ const ICONOS = {
       <path d="M12 7v5l4 2" />
     </Icono>
   ),
-  admin: (
-    <Icono>
-      <path d="M14 17H5" />
-      <path d="M20 7h-9" />
-      <circle cx="17" cy="17" r="3" />
-      <circle cx="7" cy="7" r="3" />
-    </Icono>
-  ),
 };
 
 const GRUPOS = [
@@ -64,10 +55,6 @@ const GRUPOS = [
       { id: 'frecuencia', nombre: 'Frecuencia sísmica' },
       { id: 'historial', nombre: 'Historial' },
     ],
-  },
-  {
-    titulo: 'Sistema',
-    items: [{ id: 'admin', nombre: 'Administración' }],
   },
 ];
 
@@ -216,7 +203,6 @@ function App() {
           )}
           {modulo === 'frecuencia' && <Graficos secondsLeft={secondsLeft} />}
           {modulo === 'historial' && <Historial />}
-          {modulo === 'admin' && <Admin />}
         </main>
       </div>
     </div>
