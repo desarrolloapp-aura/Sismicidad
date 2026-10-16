@@ -102,19 +102,21 @@ export function GraficoPrueba({ nombreInicial, nombreFijo }) {
   const marcas = useMemo(() => puntos.filter((_, i) => i % (6 * POR_HORA) === 0).map((p) => p.fecha), [puntos]);
 
   return (
-    <section className="grafico-prueba">
-      <div className="modulo-head">
+    <section className="tarjeta grafico-prueba">
+      <header className="tarjeta-head grafico-prueba-head">
         <div>
-          <h3>Tendencia de ejemplo</h3>
-          <p>Datos de prueba para ver el gráfico. No son una lectura de la mina y la banda no es un criterio de alerta.</p>
+          <h2>
+            Tendencia de ejemplo
+            <span className="badge prueba">Datos de prueba</span>
+          </h2>
+          <p>{nombre}. No son una lectura de la mina y la banda no es un criterio de alerta.</p>
         </div>
         {!nombreFijo && (
-          <select aria-label="Polígono de prueba" value={nombre} onChange={(event) => setElegido(event.target.value)}>
+          <select className="campo" aria-label="Polígono de prueba" value={nombre} onChange={(event) => setElegido(event.target.value)}>
             {POLIGONOS.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
         )}
-      </div>
-      <p className="aviso-prueba">Datos de prueba</p>
+      </header>
       <div className="grafico-prueba-lienzo">
         <ResponsiveContainer width="100%" height={420}>
           <ComposedChart data={puntos} margin={{ top: 16, right: 24, left: 8, bottom: 8 }}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { API_BASE } from '../api';
 
 function formatDatetime(isoStr) {
@@ -34,7 +34,7 @@ export function Historial() {
         const res = await fetch(`${API_BASE}/api/sectores/historial?${params}`);
         if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
         const data = await res.json();
-        
+
         setDatos(data.datos);
         setTotal(data.total);
         setError(null);
@@ -45,7 +45,6 @@ export function Historial() {
       }
     };
 
-    // Debounce simple para la búsqueda
     const timer = setTimeout(() => {
       fetchHistorial();
     }, 400);
@@ -54,24 +53,31 @@ export function Historial() {
   }, [page, pageSize, filtroSector, filtroEstado]);
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const desde = total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const hasta = Math.min(page * pageSize, total);
 
   return (
-    <div id="tab-historial" className="tab-panel active">
-      <div className="sector-header">
-        <h2>Historial de Mediciones</h2>
+    <section className="modulo">
+      <div className="modulo-head">
+        <div>
+          <h1>Historial</h1>
+          <p>Lecturas guardadas por el sistema para cada polígono.</p>
+        </div>
       </div>
-      
-      <div className="historial-controls">
-        <input 
-          type="text" 
-          placeholder="Buscar por sector (ej: Esmeralda)..." 
+
+      <div className="filtros">
+        <input
+          type="search"
+          placeholder="Buscar por polígono (ej: Esmeralda)"
+          aria-label="Buscar por polígono"
           value={filtroSector}
           onChange={(e) => {
             setFiltroSector(e.target.value);
             setPage(1);
           }}
         />
-        <select 
+        <select
+          aria-label="Filtrar por estado"
           value={filtroEstado}
           onChange={(e) => {
             setFiltroEstado(e.target.value);
@@ -79,40 +85,46 @@ export function Historial() {
           }}
         >
           <option value="">Todos los estados</option>
-          <option value="ok">Estado OK</option>
-          <option value="danger">Estado Peligro</option>
+          <option value="ok">Centro</option>
+          <option value="danger">Alerta</option>
         </select>
+        {(filtroSector || filtroEstado) && (
+          <button type="button" className="btn-texto" onClick={() => { setFiltroSector(''); setFiltroEstado(''); setPage(1); }}>
+            Limpiar filtros
+          </button>
+        )}
       </div>
 
-      <div className="table-wrapper">
-        <table>
+      <div className="tabla-wrap">
+        <table className="tabla-tecnica">
           <thead>
             <tr>
               <th>Polígono</th>
               <th>Estado</th>
-              <th>Frec 24h</th>
-              <th>-Mag 24h</th>
-              <th>+Mag 24h</th>
-              <th>Frec 7d</th>
+              <th>Frec. 24 h</th>
+              <th>Mag. mín. 24 h</th>
+              <th>Mag. máx. 24 h</th>
+              <th>Frec. 7 días</th>
               <th>Fecha</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px' }}>Cargando...</td></tr>
+              <tr><td colSpan="7" className="tabla-mensaje">Cargando...</td></tr>
             ) : error ? (
-              <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px', color: '#ff7675' }}>Error: {error}</td></tr>
+              <tr><td colSpan="7" className="tabla-mensaje rojo">Error: {error}</td></tr>
             ) : datos.length === 0 ? (
-              <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px' }}>No hay lecturas históricas guardadas. El historial aparece cuando la mina envía mediciones.</td></tr>
+              <tr>
+                <td colSpan="7" className="tabla-mensaje">
+                  <strong>No hay lecturas históricas guardadas</strong>
+                  <span>El historial aparece cuando la mina envía mediciones.</span>
+                </td>
+              </tr>
             ) : (
               datos.map((row) => (
                 <tr key={row.id}>
-                  <td className="nombre-col">{row.nombre}</td>
-                  <td>
-                    <span className={`estado-chip ${row.estado}`}>
-                      {row.estado_label}
-                    </span>
-                  </td>
+                  <th scope="row">{row.nombre}</th>
+                  <td><span className={`badge ${row.estado}`}>{row.estado_label}</span></td>
                   <td>{row.frec_24h || '—'}</td>
                   <td>{row.mag_min_24h || '—'}</td>
                   <td>{row.mag_max_24h || '—'}</td>
@@ -123,28 +135,19 @@ export function Historial() {
             )}
           </tbody>
         </table>
+        <div className="tabla-pie">
+          <span>Mostrando {desde}–{hasta} de {total} registros</span>
+          <div>
+            <button type="button" className="btn-secundario" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1}>
+              Anterior
+            </button>
+            <span>{page} / {totalPages}</span>
+            <button type="button" className="btn-secundario" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages}>
+              Siguiente
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="pagination">
-        <button 
-          className="page-btn" 
-          onClick={() => setPage(p => Math.max(1, p - 1))} 
-          disabled={page <= 1}
-        >
-          ← Anterior
-        </button>
-        <span className="page-btn current">Pág. {page} / {totalPages}</span>
-        <button 
-          className="page-btn" 
-          onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
-          disabled={page >= totalPages}
-        >
-          Siguiente →
-        </button>
-        <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginLeft: '8px' }}>
-          {total} registros totales
-        </span>
-      </div>
-    </div>
+    </section>
   );
 }

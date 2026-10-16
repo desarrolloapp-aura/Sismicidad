@@ -28,7 +28,7 @@ export function SectorCard({ sector }) {
           {sector.principal && <p className="sc-principal">Polígono principal</p>}
         </div>
         <div className="sc-estado-wrap">
-          <span className={`sc-estado ${estadoClass}`}>{sector.estado_label}</span>
+          <span className={`badge ${estadoClass}`}>{sector.estado_label}</span>
           <p className="sc-aviso">{isOk ? 'Se puede trabajar' : 'Avisar a personal'}</p>
         </div>
       </header>

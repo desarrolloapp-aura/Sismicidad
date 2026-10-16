@@ -27,9 +27,8 @@ function comparar(a, b, orden) {
   return String(va).localeCompare(String(vb), 'es') * orden.dir;
 }
 
-export function Monitoreo({ sectores, actualizado }) {
+export function Monitoreo({ sectores, actualizado, busqueda, onBusqueda: setBusqueda }) {
   const [vista, setVista] = useState('tabla');
-  const [busqueda, setBusqueda] = useState('');
   const [estado, setEstado] = useState('todos');
   const [orden, setOrden] = useState({ clave: 'nombre', dir: 1 });
 
@@ -46,7 +45,7 @@ export function Monitoreo({ sectores, actualizado }) {
     <section className="modulo">
       <div className="modulo-head">
         <div>
-          <h2>Polígonos de trabajo</h2>
+          <h1>Monitoreo sísmico</h1>
           <p>Frecuencia, magnitud y cota Z de la lectura disponible. Centro es el estado que informa la tabla.</p>
         </div>
         <div className="vista-switch" role="group" aria-label="Tipo de vista">
@@ -70,7 +69,7 @@ export function Monitoreo({ sectores, actualizado }) {
         </select>
         {(busqueda || estado !== 'todos') && (
           <button type="button" className="btn-texto" onClick={() => { setBusqueda(''); setEstado('todos'); }}>
-            Limpiar
+            Limpiar filtros
           </button>
         )}
       </div>
@@ -121,7 +120,7 @@ function Tabla({ sectores, orden, onOrden, actualizado }) {
           {sectores.map((sector) => (
             <tr key={sector.nombre}>
               <th scope="row">{sector.nombre}</th>
-              <td><span className={`estado-chip ${sector.estado}`}>{sector.estado_label}</span></td>
+              <td><span className={`badge ${sector.estado}`}>{sector.estado_label}</span></td>
               <td>{mostrar(sector.frec_24h)}</td>
               <td>{mostrar(sector.frec_7d)}</td>
               <td>{mostrar(sector.mag_min_24h)}</td>

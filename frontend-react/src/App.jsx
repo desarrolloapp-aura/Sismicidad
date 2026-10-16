@@ -1,50 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Resumen } from './components/Resumen';
 import { Monitoreo } from './components/Monitoreo';
 import { Graficos } from './components/Graficos';
 import { Historial } from './components/Historial';
+import { Buscador } from './components/Buscador';
+import { Icono, TRAZOS } from './components/Icono';
 import { useSectores } from './hooks/useSectores';
-
-function Icono({ children }) {
-  return (
-    <svg className="menu-icono" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {children}
-    </svg>
-  );
-}
-
-const ICONOS = {
-  resumen: (
-    <Icono>
-      <rect width="7" height="9" x="3" y="3" rx="1" />
-      <rect width="7" height="5" x="14" y="3" rx="1" />
-      <rect width="7" height="9" x="14" y="12" rx="1" />
-      <rect width="7" height="5" x="3" y="16" rx="1" />
-    </Icono>
-  ),
-  poligonos: (
-    <Icono>
-      <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
-    </Icono>
-  ),
-  frecuencia: (
-    <Icono>
-      <path d="M12 16v5" />
-      <path d="M16 14v7" />
-      <path d="M20 10v11" />
-      <path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15" />
-      <path d="M4 18v3" />
-      <path d="M8 14v7" />
-    </Icono>
-  ),
-  historial: (
-    <Icono>
-      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-      <path d="M3 3v5h5" />
-      <path d="M12 7v5l4 2" />
-    </Icono>
-  ),
-};
+import { fechaCorta } from './fechas';
 
 const GRUPOS = [
   {
@@ -83,11 +45,14 @@ function App() {
   const [contraido, setContraido] = useState(false);
   const [movil, setMovil] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const { reporte, loading, refreshing, error, secondsLeft } = useSectores();
+  const [buscando, setBuscando] = useState(false);
+  const [busqueda, setBusqueda] = useState('');
+  const { reporte, loading, refreshing, error, secondsLeft, fetchSectores } = useSectores();
   const conexion = estadoConexion({ loading, refreshing, error, reporte });
   const titulo = GRUPOS.flatMap((grupo) => grupo.items).find((item) => item.id === modulo)?.nombre;
   const lectura = formatDatetime(reporte?.timestamp_geovita);
   const textoVisible = movil || !contraido;
+  const cerrarBuscador = useCallback(() => setBuscando(false), []);
 
   useEffect(() => {
     const consulta = window.matchMedia('(max-width: 800px)');
@@ -101,17 +66,27 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!menuAbierto) return undefined;
-    const cerrar = (evento) => {
-      if (evento.key === 'Escape') setMenuAbierto(false);
+    const teclas = (evento) => {
+      if ((evento.ctrlKey || evento.metaKey) && evento.key.toLowerCase() === 'k') {
+        evento.preventDefault();
+        setBuscando(true);
+      } else if (evento.key === 'Escape') {
+        setMenuAbierto(false);
+      }
     };
-    window.addEventListener('keydown', cerrar);
-    return () => window.removeEventListener('keydown', cerrar);
-  }, [menuAbierto]);
+    window.addEventListener('keydown', teclas);
+    return () => window.removeEventListener('keydown', teclas);
+  }, []);
 
   function abrirModulo(id) {
     setModulo(id);
     if (movil) setMenuAbierto(false);
+  }
+
+  function elegirPoligono(nombre) {
+    setBusqueda(nombre);
+    setBuscando(false);
+    abrirModulo('poligonos');
   }
 
   return (
@@ -119,7 +94,12 @@ function App() {
       <aside className="sidebar">
         <div className="sidebar-brand">
           <img className="sidebar-logo" src="/favicon.png" alt="Aura" />
-          {textoVisible && <strong>Aura</strong>}
+          {textoVisible && (
+            <div className="sidebar-marca">
+              <strong>Aura Ingeniería</strong>
+              <span>Monitoreo sísmico</span>
+            </div>
+          )}
           <button
             type="button"
             className="menu-movil"
@@ -127,22 +107,10 @@ function App() {
             aria-expanded={menuAbierto}
             onClick={() => setMenuAbierto((valor) => !valor)}
           >
-            <Icono>
-              {menuAbierto ? (
-                <>
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </>
-              ) : (
-                <>
-                  <path d="M4 6h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 18h16" />
-                </>
-              )}
-            </Icono>
+            <Icono>{menuAbierto ? TRAZOS.cerrar : TRAZOS.menu}</Icono>
           </button>
         </div>
+
         <nav className="sidebar-nav" aria-label="Secciones">
           {GRUPOS.map((grupo) => (
             <div key={grupo.titulo} className="menu-grupo">
@@ -157,54 +125,88 @@ function App() {
                   className={`menu-btn ${modulo === item.id ? 'active' : ''}`}
                   onClick={() => abrirModulo(item.id)}
                 >
-                  {ICONOS[item.id]}
+                  <Icono>{TRAZOS[item.id]}</Icono>
                   {textoVisible && <span>{item.nombre}</span>}
                 </button>
               ))}
             </div>
           ))}
         </nav>
+
         <div className="sidebar-pie">
-          <button
-            type="button"
-            className="menu-colapsar"
-            title={!textoVisible ? 'Expandir menú' : undefined}
-            aria-label={textoVisible ? 'Contraer menú' : 'Expandir menú'}
-            aria-expanded={textoVisible}
-            onClick={() => setContraido((valor) => !valor)}
-          >
-            <Icono>
-              <rect width="18" height="18" x="3" y="3" rx="2" />
-              <path d="M9 3v18" />
-              {textoVisible ? <path d="m16 15-3-3 3-3" /> : <path d="m14 9 3 3-3 3" />}
-            </Icono>
-            {textoVisible && <span>Contraer menú</span>}
-          </button>
+          <div className="sidebar-usuario">
+            <span className="avatar">ET</span>
+            {textoVisible && (
+              <div className="sidebar-usuario-texto">
+                <strong>El Teniente</strong>
+                <span>Lectura {fechaCorta(reporte?.timestamp_geovita)}</span>
+              </div>
+            )}
+            <button
+              type="button"
+              className="menu-colapsar"
+              title={textoVisible ? 'Contraer menú' : 'Expandir menú'}
+              aria-label={textoVisible ? 'Contraer menú' : 'Expandir menú'}
+              aria-expanded={textoVisible}
+              onClick={() => setContraido((valor) => !valor)}
+            >
+              <Icono size={16}>{textoVisible ? TRAZOS.contraer : TRAZOS.expandir}</Icono>
+            </button>
+          </div>
+          {textoVisible && <p className="sidebar-estado">Próxima consulta en {secondsLeft}s</p>}
         </div>
       </aside>
 
       <div className="shell-main">
         <header className="topbar">
-          <div>
-            <p className="header-kicker">El Teniente</p>
-            <h1>{titulo}</h1>
-          </div>
-          <div className="topbar-estado">
-            <span className={`conexion ${conexion.clase}`}>{conexion.texto}</span>
-            <span>Lectura de la tabla: {lectura}</span>
-            <span>Próxima consulta en {secondsLeft}s</span>
+          <p className="ruta">
+            {modulo === 'resumen' ? 'Aura Ingeniería' : 'El Teniente'}
+            <span>/</span>
+            <strong>{modulo === 'resumen' ? 'El Teniente' : titulo}</strong>
+          </p>
+          <div className="topbar-acciones">
+            <button type="button" className="topbar-buscar" onClick={() => setBuscando(true)}>
+              <Icono size={14} className="">{TRAZOS.buscar}</Icono>
+              <span>Buscar</span>
+              <kbd>Ctrl+K</kbd>
+            </button>
+            <span className={`topbar-chip ${conexion.clase}`} title={`Lectura de la tabla: ${lectura}`}>
+              <i aria-hidden="true" />
+              {conexion.texto}
+            </span>
+            <button
+              type="button"
+              className="topbar-accion"
+              disabled={refreshing}
+              title={`Próxima consulta en ${secondsLeft}s`}
+              onClick={fetchSectores}
+            >
+              <Icono size={14} className="">{TRAZOS.actualizar}</Icono>
+              Actualizar
+            </button>
           </div>
         </header>
 
         <main className="main-content">
-          {modulo === 'resumen' && <Resumen reporte={reporte} error={error} />}
+          {modulo === 'resumen' && (
+            <Resumen reporte={reporte} error={error} onAbrir={abrirModulo} />
+          )}
           {modulo === 'poligonos' && (
-            <Monitoreo sectores={reporte?.sectores || []} actualizado={lectura} />
+            <Monitoreo
+              sectores={reporte?.sectores || []}
+              actualizado={fechaCorta(reporte?.timestamp_geovita)}
+              busqueda={busqueda}
+              onBusqueda={setBusqueda}
+            />
           )}
           {modulo === 'frecuencia' && <Graficos />}
           {modulo === 'historial' && <Historial />}
         </main>
       </div>
+
+      {buscando && (
+        <Buscador sectores={reporte?.sectores || []} onElegir={elegirPoligono} onCerrar={cerrarBuscador} />
+      )}
     </div>
   );
 }
