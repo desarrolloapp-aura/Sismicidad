@@ -7,8 +7,10 @@ export function useSectores() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(REFRESH_INTERVAL);
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchSectores = async () => {
+    setRefreshing(true);
     try {
       const res = await fetch(`${API_BASE}/api/sectores/estado-actual`);
       if (!res.ok) {
@@ -29,6 +31,7 @@ export function useSectores() {
       setError(err.message);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -48,5 +51,5 @@ export function useSectores() {
     return () => clearInterval(interval);
   }, []);
 
-  return { reporte, loading, error, secondsLeft, fetchSectores };
+  return { reporte, loading, refreshing, error, secondsLeft, fetchSectores };
 }

@@ -147,7 +147,7 @@ export function Graficos({ secondsLeft }) {
           </div>
         ) : chartData.length === 0 ? (
           <div className="error-state" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p>No hay datos suficientes para este sector.</p>
+            <p>No hay lecturas sucesivas para este polígono. La copia guardada es un solo momento, no una serie de frecuencia.</p>
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">

@@ -103,7 +103,7 @@ export function Historial() {
             ) : error ? (
               <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px', color: '#ff7675' }}>Error: {error}</td></tr>
             ) : datos.length === 0 ? (
-              <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px' }}>Sin registros encontrados</td></tr>
+              <tr><td colSpan="7" style={{ textAlign: 'center', padding: '32px' }}>No hay lecturas históricas guardadas. El historial aparece cuando la mina envía mediciones.</td></tr>
             ) : (
               datos.map((row) => (
                 <tr key={row.id}>
