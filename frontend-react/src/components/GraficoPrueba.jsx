@@ -23,18 +23,26 @@ function serie(nombre) {
     x = (x * 1664525 + 1013904223) % 4294967296;
     return x / 4294967296;
   };
-  const base = 8 + Math.floor(aleatorio() * 10);
+  const base = 6 + Math.floor(aleatorio() * 6);
+  let eventos = base + 2;
+  let promedio = base;
+  let referencia = base + 5;
   const puntos = [];
-  for (let i = 0; i < 28; i += 1) {
-    const dia = Math.floor(i / 4) + 1;
-    const hora = (i % 4) * 6;
-    const eventos = Math.max(2, Math.round(base + Math.sin(i / 3) * 6 + (aleatorio() - 0.5) * 8));
+  for (let i = 0; i < 84; i += 1) {
+    if (aleatorio() > 0.22) {
+      const salto = 1 + Math.floor(aleatorio() * 3);
+      eventos = Math.max(1, Math.min(18, eventos + (aleatorio() > 0.5 ? salto : -salto)));
+    }
+    if (i % 6 === 0) promedio = Math.max(2, Math.min(16, promedio + (aleatorio() > 0.5 ? 1 : -1)));
+    if (i % 12 === 0 && aleatorio() > 0.3) referencia = base + 4 + Math.round(aleatorio() * 5);
+    const dia = Math.floor(i / 12) + 1;
+    const hora = (i % 12) * 2;
     puntos.push({
       fecha: `D${dia} ${String(hora).padStart(2, '0')}h`,
       eventos,
-      promedio: Math.round((base + Math.sin(i / 5) * 3) * 10) / 10,
-      referencia: base + 6 + (i % 8 < 4 ? 0 : 4),
-      magnitud: i % 3 === 0 ? Math.round((-0.3 - aleatorio() * 1.1) * 100) / 100 : null,
+      promedio,
+      referencia,
+      magnitud: i % 7 === 0 ? Math.round((-0.25 - aleatorio() * 1.15) * 100) / 100 : null,
     });
   }
   return puntos;
@@ -61,14 +69,14 @@ export function GraficoPrueba({ nombreInicial }) {
         <ResponsiveContainer width="100%" height={360}>
           <ComposedChart data={puntos} margin={{ top: 16, right: 24, left: 8, bottom: 8 }}>
             <CartesianGrid stroke="#d5dee8" strokeDasharray="3 3" />
-            <XAxis dataKey="fecha" tick={{ fill: '#4d6074', fontSize: 11 }} interval={3} />
+            <XAxis dataKey="fecha" tick={{ fill: '#4d6074', fontSize: 11 }} interval={11} />
             <YAxis yAxisId="eventos" tick={{ fill: '#4d6074', fontSize: 11 }} width={42} label={{ value: 'Eventos', angle: -90, position: 'insideLeft', fill: '#4d6074', fontSize: 11 }} />
             <YAxis yAxisId="mag" orientation="right" domain={[-1.6, 0.2]} tick={{ fill: '#4d6074', fontSize: 11 }} width={48} label={{ value: 'Magnitud', angle: 90, position: 'insideRight', fill: '#4d6074', fontSize: 11 }} />
             <Tooltip />
             <Legend />
-            <Line yAxisId="eventos" type="stepAfter" dataKey="referencia" name="Referencia visual" stroke="#3aa0b8" strokeWidth={2} dot={false} />
-            <Line yAxisId="eventos" type="monotone" dataKey="eventos" name="Eventos" stroke="#d64545" strokeWidth={1.6} dot={false} />
-            <Line yAxisId="eventos" type="monotone" dataKey="promedio" name="Promedio móvil" stroke="#2c6cb0" strokeWidth={2} dot={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="referencia" name="Referencia visual" stroke="#3aa0b8" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="eventos" name="Eventos" stroke="#d64545" strokeWidth={1.5} dot={false} isAnimationActive={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="promedio" name="Promedio móvil" stroke="#2c6cb0" strokeWidth={2} dot={false} isAnimationActive={false} />
             <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#2f9e6b" shape="triangle" />
           </ComposedChart>
         </ResponsiveContainer>
