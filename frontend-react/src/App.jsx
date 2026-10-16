@@ -201,7 +201,7 @@ function App() {
           {modulo === 'poligonos' && (
             <Monitoreo sectores={reporte?.sectores || []} actualizado={lectura} />
           )}
-          {modulo === 'frecuencia' && <Graficos secondsLeft={secondsLeft} />}
+          {modulo === 'frecuencia' && <Graficos />}
           {modulo === 'historial' && <Historial />}
         </main>
       </div>

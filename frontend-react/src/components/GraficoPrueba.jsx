@@ -14,7 +14,8 @@ const POLIGONOS = [
 const DIAS = 7;
 const POR_HORA = 2;
 const POR_DIA = 24 * POR_HORA;
-const VENTANA = POR_DIA;
+const VENTANA = 3 * POR_DIA;
+const VENTANA_BANDA = 3 * POR_DIA;
 
 function semilla(texto) {
   let n = 7;
@@ -29,35 +30,58 @@ function serie(nombre) {
     return x / 4294967296;
   };
 
-  const total = DIAS * POR_DIA + VENTANA;
-  const nivelBase = 5 + aleatorio() * 6;
+  const total = DIAS * POR_DIA + VENTANA_BANDA;
+  const nivelBase = 6 + aleatorio() * 4;
   const eventos = [];
   let valor = nivelBase;
   for (let i = 0; i < total; i += 1) {
-    const nivel = nivelBase + Math.sin(i / 38) * nivelBase * 0.55 + Math.sin(i / 11) * 1.5;
-    if (aleatorio() > 0.5) valor += (nivel - valor) * 0.3 + (aleatorio() - 0.5) * 3.5;
-    eventos.push(Math.max(0, Math.round(valor)));
+    const nivel = nivelBase + Math.sin(i / 26) * nivelBase * 0.5;
+    if (aleatorio() > 0.55) valor += (nivel - valor) * 0.35 + (aleatorio() - 0.5) * 3;
+    eventos.push(Math.max(1, Math.round(valor)));
   }
 
+  const media = (desde, hasta) => {
+    let suma = 0;
+    for (let k = desde; k < hasta; k += 1) suma += eventos[k];
+    return suma / (hasta - desde);
+  };
+
   const puntos = [];
-  let superior = 0;
-  let inferior = 0;
-  for (let i = VENTANA; i < total; i += 1) {
-    const tramo = eventos.slice(i - VENTANA, i);
-    const promedio = tramo.reduce((suma, n) => suma + n, 0) / VENTANA;
-    if ((i - VENTANA) % 6 === 0) {
-      const margen = 2 * Math.sqrt(promedio) + 1;
-      superior = Math.round(promedio + margen);
-      inferior = Math.max(0, Math.round(promedio - margen));
+  let superiorBase = null;
+  let inferiorBase = null;
+  let salto = 0;
+  let saltoSuperior = 0;
+  let saltoInferior = 0;
+  for (let i = VENTANA_BANDA; i < total; i += 1) {
+    const promedio = media(i - VENTANA, i);
+    const lento = media(i - VENTANA_BANDA, i);
+    const margen = 2 * Math.sqrt(lento) + 1;
+    const superiorCalculado = lento + margen;
+    const inferiorCalculado = Math.max(0, lento - margen);
+    if (superiorBase === null || Math.abs(superiorCalculado - superiorBase) >= 1) superiorBase = Math.round(superiorCalculado);
+    if (inferiorBase === null || Math.abs(inferiorCalculado - inferiorBase) >= 1) inferiorBase = Math.round(inferiorCalculado);
+
+    if (salto > 0) {
+      salto -= 1;
+    } else {
+      saltoSuperior = 0;
+      saltoInferior = 0;
+      if (aleatorio() > 0.97) {
+        salto = 1 + Math.floor(aleatorio() * 3);
+        if (aleatorio() > 0.4) saltoSuperior = aleatorio() > 0.5 ? 1 : -1;
+        else saltoInferior = -1;
+      }
     }
-    const indice = i - VENTANA;
+    const superior = superiorBase + saltoSuperior;
+    const inferior = Math.max(0, inferiorBase + saltoInferior);
+    const indice = i - VENTANA_BANDA;
     const dia = Math.floor(indice / POR_DIA) + 1;
     const minutos = (indice % POR_DIA) * (60 / POR_HORA);
     const hora = `${String(Math.floor(minutos / 60)).padStart(2, '0')}:${String(minutos % 60).padStart(2, '0')}`;
     puntos.push({
       fecha: `Día ${dia} ${hora}`,
       eventos: eventos[i],
-      promedio: Math.round(promedio * 10) / 10,
+      promedio: Math.round(promedio * 5) / 5,
       superior,
       inferior,
       magnitud: aleatorio() > 0.93 ? Math.round((-0.2 - aleatorio() * 1.3) * 100) / 100 : null,
@@ -70,9 +94,10 @@ function etiquetaDia(fecha) {
   return fecha.endsWith(' 00:00') ? fecha.replace(' 00:00', '') : '';
 }
 
-export function GraficoPrueba({ nombreInicial }) {
+export function GraficoPrueba({ nombreInicial, nombreFijo }) {
   const inicial = POLIGONOS.includes(nombreInicial) ? nombreInicial : POLIGONOS[0];
-  const [nombre, setNombre] = useState(inicial);
+  const [elegido, setElegido] = useState(inicial);
+  const nombre = nombreFijo || elegido;
   const puntos = useMemo(() => serie(nombre), [nombre]);
   const marcas = useMemo(() => puntos.filter((_, i) => i % (6 * POR_HORA) === 0).map((p) => p.fecha), [puntos]);
 
@@ -83,9 +108,11 @@ export function GraficoPrueba({ nombreInicial }) {
           <h3>Tendencia de ejemplo</h3>
           <p>Datos de prueba para ver el gráfico. No son una lectura de la mina y la banda no es un criterio de alerta.</p>
         </div>
-        <select aria-label="Polígono de prueba" value={nombre} onChange={(event) => setNombre(event.target.value)}>
-          {POLIGONOS.map((item) => <option key={item} value={item}>{item}</option>)}
-        </select>
+        {!nombreFijo && (
+          <select aria-label="Polígono de prueba" value={nombre} onChange={(event) => setElegido(event.target.value)}>
+            {POLIGONOS.map((item) => <option key={item} value={item}>{item}</option>)}
+          </select>
+        )}
       </div>
       <p className="aviso-prueba">Datos de prueba</p>
       <div className="grafico-prueba-lienzo">
@@ -122,7 +149,7 @@ export function GraficoPrueba({ nombreInicial }) {
             <Legend />
             <Line yAxisId="eventos" type="stepAfter" dataKey="superior" name="Banda de ejemplo" stroke="#17b3b3" strokeWidth={2.4} dot={false} isAnimationActive={false} />
             <Line yAxisId="eventos" type="stepAfter" dataKey="inferior" name="Banda inferior de ejemplo" stroke="#17b3b3" strokeWidth={2.4} dot={false} isAnimationActive={false} legendType="none" />
-            <Line yAxisId="eventos" type="linear" dataKey="promedio" name="Promedio móvil 24 h" stroke="#1f3fd6" strokeWidth={2.4} dot={false} isAnimationActive={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="promedio" name="Promedio móvil 72 h" stroke="#1f3fd6" strokeWidth={2.4} dot={false} isAnimationActive={false} />
             <Line yAxisId="eventos" type="stepAfter" dataKey="eventos" name="Eventos" stroke="#e02424" strokeWidth={2.4} dot={false} isAnimationActive={false} />
             <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
           </ComposedChart>

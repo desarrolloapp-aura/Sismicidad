@@ -42,7 +42,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export function Graficos({ secondsLeft }) {
+export function Graficos() {
   const [sectores, setSectores] = useState([]);
   const [selectedSector, setSelectedSector] = useState('');
   const [chartData, setChartData] = useState([]);
@@ -68,9 +68,9 @@ export function Graficos({ secondsLeft }) {
 
   // 2. Cargar los datos de tendencia del sector seleccionado
   useEffect(() => {
+    if (!selectedSector) return undefined;
+    setLoading(true);
     const fetchTendencia = async () => {
-      if (!selectedSector) return;
-      setLoading(true);
       try {
         const res = await fetch(`${API_BASE}/api/sectores/${encodeURIComponent(selectedSector)}/tendencia?limit=60`);
         const data = await res.json();
@@ -97,7 +97,9 @@ export function Graficos({ secondsLeft }) {
     };
 
     fetchTendencia();
-  }, [selectedSector, secondsLeft]); // Se actualiza cuando cambia el sector o pasa 1 minuto
+    const intervalo = setInterval(fetchTendencia, 60000);
+    return () => clearInterval(intervalo);
+  }, [selectedSector]);
 
   // Identificar áreas de peligro para dibujarlas de fondo rojo
   const dangerAreas = [];
@@ -147,7 +149,7 @@ export function Graficos({ secondsLeft }) {
             <p>Cargando datos históricos...</p>
           </div>
         ) : chartData.length === 0 ? (
-          <GraficoPrueba nombreInicial={selectedSector} />
+          <GraficoPrueba nombreFijo={selectedSector} />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart

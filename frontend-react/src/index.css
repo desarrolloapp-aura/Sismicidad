@@ -1074,7 +1074,10 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   padding: 14px 12px 12px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .sidebar-brand {
@@ -1083,7 +1086,7 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   gap: 10px;
   min-height: 40px;
   padding: 2px 8px 12px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   border-bottom: 1px solid rgba(232, 238, 246, 0.08);
 }
 
@@ -1108,18 +1111,17 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  flex: 1;
+  gap: 18px;
 }
 
 .menu-grupo {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .menu-btn {
-  height: 42px;
+  height: 40px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -1214,6 +1216,8 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   .shell.contraido .sidebar {
     width: 100%;
     min-height: 0;
+    height: auto;
+    overflow: visible;
     position: sticky;
     top: 0;
     z-index: 40;
@@ -1273,12 +1277,12 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   color: #8b9bb0;
 }
 .sidebar-pie {
-  margin-top: auto;
-  padding-top: 12px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px solid rgba(232, 238, 246, 0.08);
 }
 .menu-colapsar {
-  height: 42px;
+  height: 40px;
   width: 100%;
   display: flex;
   align-items: center;

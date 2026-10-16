@@ -59,7 +59,7 @@ export function Sismicidad({ reporte, loading, error, secondsLeft }) {
         ) : (
           <>
             {activeTab === 'dashboard' && <Dashboard sectores={reporte?.sectores || []} />}
-            {activeTab === 'graficos' && <Graficos secondsLeft={secondsLeft} />}
+            {activeTab === 'graficos' && <Graficos />}
             {activeTab === 'historial' && <Historial />}
           </>
         )}
