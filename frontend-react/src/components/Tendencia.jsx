@@ -204,7 +204,7 @@ export function Tendencia({ nombre, poligonos = [], inicial }) {
           </h2>
           <p>
             {real
-              ? `${actual}. Lecturas del PC de la mina desde el ${fechaHora(puntos[0].t)}. En rojo, cuando estuvo fuera de Centro.`
+              ? `${actual}. Lecturas del PC de la mina del ${fechaHora(puntos[0].t)} al ${fechaHora(puntos[puntos.length - 1].t)}. En rojo, cuando estuvo fuera de Centro.`
               : `${actual || 'Polígono de ejemplo'}. No son una lectura de la mina y la banda no es un criterio de alerta.`}
           </p>
         </div>

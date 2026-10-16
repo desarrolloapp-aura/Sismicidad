@@ -8,15 +8,16 @@ Endpoints disponibles:
 """
 
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import asc, desc, func
+from sqlalchemy import desc
 
 from app.database import get_db
 from app.models import SectorSnapshot
 from app.schemas import ReporteActual, HistorialResponse, SectorSnapshotOut
+from app.tendencia import leer_tendencia
 from app.scheduler import get_ultimo_reporte, _ejecutar_scraping
 
 logger = logging.getLogger(__name__)
@@ -142,23 +143,7 @@ def get_tendencia_sector(
     Ideal para dibujar gráficos de líneas de evolución temporal.
     """
     if horas is not None:
-        desde = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=horas)
-        registros = (
-            db.query(SectorSnapshot)
-            .filter(func.lower(SectorSnapshot.nombre) == nombre_sector.lower())
-            .filter(SectorSnapshot.timestamp_scraping >= desde)
-            .order_by(asc(SectorSnapshot.timestamp_scraping))
-            .all()
-        )
-        if len(registros) > puntos:
-            paso = len(registros) / puntos
-            indices = {int(i * paso) for i in range(puntos)}
-            indices.add(len(registros) - 1)
-            indices.update(
-                i for i in range(1, len(registros))
-                if registros[i].estado != registros[i - 1].estado
-            )
-            registros = [registros[i] for i in sorted(indices)]
+        registros = leer_tendencia(db, nombre_sector, horas, puntos)
         return [SectorSnapshotOut.model_validate(r) for r in registros]
 
     query = db.query(SectorSnapshot).filter(

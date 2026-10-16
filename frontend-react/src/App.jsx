@@ -36,6 +36,7 @@ function estadoConexion({ loading, refreshing, error, reporte }) {
   if (error && !reporte) return { clase: 'error', texto: 'Error de conexión' };
   if (error && reporte) return { clase: 'atrasado', texto: 'Datos desactualizados' };
   if (reporte?.fuente === 'en_vivo') return { clase: 'conectado', texto: 'Conectado' };
+  if (reporte?.fuente === 'respaldo') return { clase: 'atrasado', texto: 'Sin conexión · último respaldo' };
   if (reporte?.fuente === 'copia_local') return { clase: 'copia', texto: 'Copia guardada' };
   return { clase: 'atrasado', texto: 'Sin lectura' };
 }

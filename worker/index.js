@@ -1,11 +1,17 @@
 import prueba from "./datos-prueba.json";
 
+const MAX_RESPALDO = 5 * 1024 * 1024;
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/puente" && request.method === "POST") {
       return guardarPuente(request, env);
+    }
+
+    if (url.pathname === "/api/respaldo" && request.method === "POST") {
+      return guardarRespaldo(request, env);
     }
 
     if (url.pathname.startsWith("/api/")) {
@@ -16,9 +22,13 @@ export default {
   },
 };
 
-async function guardarPuente(request, env) {
+function autorizado(request, env) {
   const secreto = request.headers.get("x-puente-secreto") || "";
-  if (!env.PUENTE_SECRETO || secreto !== env.PUENTE_SECRETO) {
+  return Boolean(env.PUENTE_SECRETO) && secreto === env.PUENTE_SECRETO;
+}
+
+async function guardarPuente(request, env) {
+  if (!autorizado(request, env)) {
     return Response.json({ error: "No autorizado" }, { status: 401 });
   }
 
@@ -44,6 +54,32 @@ async function guardarPuente(request, env) {
   return Response.json({ ok: true, url: destino.origin });
 }
 
+async function guardarRespaldo(request, env) {
+  if (!autorizado(request, env)) {
+    return Response.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  const texto = await request.text();
+  if (texto.length > MAX_RESPALDO) {
+    return Response.json({ error: "Respaldo demasiado grande" }, { status: 413 });
+  }
+
+  let cuerpo;
+  try {
+    cuerpo = JSON.parse(texto);
+  } catch {
+    return Response.json({ error: "Respaldo inválido" }, { status: 400 });
+  }
+  const reporte = cuerpo?.reporte;
+  if (!reporte || !Array.isArray(reporte.sectores) || !Array.isArray(cuerpo.filas)) {
+    return Response.json({ error: "Respaldo inválido" }, { status: 400 });
+  }
+
+  const respaldo = { recibido: new Date().toISOString(), reporte, filas: cuerpo.filas };
+  await env.DATOS.put("respaldo", JSON.stringify(respaldo));
+  return Response.json({ ok: true, filas: cuerpo.filas.length });
+}
+
 async function reenviar(request, env, url) {
   const puente = await env.DATOS.get("url");
   if (puente) {
@@ -60,7 +96,41 @@ async function reenviar(request, env, url) {
       /* el computador de la mina no respondió */
     }
   }
+
+  const respaldo = await env.DATOS.get("respaldo", { type: "json", cacheTtl: 60 });
+  if (respaldo) return desdeRespaldo(respaldo, url);
   return copiaDePrueba(url);
+}
+
+function desdeRespaldo(respaldo, url) {
+  if (url.pathname === "/api/sectores/estado-actual" || url.pathname === "/api/sectores/forzar-update") {
+    return Response.json({ ...respaldo.reporte, fuente: "respaldo", respaldo_recibido: respaldo.recibido });
+  }
+
+  const tendencia = url.pathname.match(/^\/api\/sectores\/(.+)\/tendencia$/);
+  if (tendencia) {
+    const nombre = decodeURIComponent(tendencia[1]).toLowerCase();
+    return Response.json(respaldo.filas.filter((fila) => String(fila.nombre).toLowerCase() === nombre));
+  }
+
+  if (url.pathname === "/api/sectores/historial") {
+    const sector = (url.searchParams.get("sector") || "").toLowerCase();
+    const estado = url.searchParams.get("estado") || "";
+    const page = Math.max(1, Number.parseInt(url.searchParams.get("page"), 10) || 1);
+    const pageSize = Math.min(500, Math.max(1, Number.parseInt(url.searchParams.get("page_size"), 10) || 50));
+    const datos = respaldo.filas
+      .filter((fila) => !sector || String(fila.nombre).toLowerCase().includes(sector))
+      .filter((fila) => !estado || fila.estado === estado)
+      .sort((a, b) => String(b.timestamp_scraping).localeCompare(String(a.timestamp_scraping)));
+    return Response.json({
+      total: datos.length,
+      page,
+      page_size: pageSize,
+      datos: datos.slice((page - 1) * pageSize, page * pageSize),
+    });
+  }
+
+  return Response.json({ error: "Sin conexión con la mina" }, { status: 503 });
 }
 
 function copiaDePrueba(url) {

@@ -11,17 +11,60 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 import httpx
 
-from app.config import MODO, PUENTE_URL
-from app.schemas import ReporteActual
+from app.config import MODO, PAGINA_URL, PUENTE_SECRETO, PUENTE_URL, RESPALDO_MINUTOS
+from app.schemas import ReporteActual, SectorSnapshotOut
 from app.scraper import scrapear_geovita
 from app.database import SessionLocal
 from app.models import SectorSnapshot
+from app.tendencia import leer_tendencia
 
 logger = logging.getLogger(__name__)
 
 # Cache en memoria con el último reporte (para responder instantáneo sin DB)
 ultimo_reporte = None
+ultimo_respaldo = None
 scheduler = AsyncIOScheduler()
+
+CAMPOS_RESPALDO = (
+    "id", "nombre", "estado", "estado_label", "frec_24h", "mag_min_24h",
+    "mag_max_24h", "frec_7d", "timestamp_scraping",
+)
+
+
+async def _enviar_respaldo(reporte: ReporteActual):
+    """Deja en la página el último reporte y los últimos 7 días, para cuando se corte el puente."""
+    global ultimo_respaldo
+
+    ahora = datetime.now(timezone.utc)
+    if ultimo_respaldo and (ahora - ultimo_respaldo).total_seconds() < RESPALDO_MINUTOS * 60:
+        return
+    if not PUENTE_SECRETO:
+        logger.warning("Falta puente.secreto; no se envía el respaldo a la página.")
+        return
+
+    db = SessionLocal()
+    try:
+        filas = []
+        for sector in reporte.sectores:
+            for registro in leer_tendencia(db, sector.nombre, horas=168, puntos=300):
+                dato = SectorSnapshotOut.model_validate(registro).model_dump(mode="json", include=set(CAMPOS_RESPALDO))
+                filas.append(dato)
+    finally:
+        db.close()
+
+    cuerpo = {"reporte": reporte.model_dump(mode="json"), "filas": filas}
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as cliente:
+            respuesta = await cliente.post(
+                f"{PAGINA_URL}/api/respaldo",
+                json=cuerpo,
+                headers={"x-puente-secreto": PUENTE_SECRETO},
+            )
+            respuesta.raise_for_status()
+        ultimo_respaldo = ahora
+        logger.info("Respaldo enviado a la página (%s lecturas)", len(filas))
+    except Exception as e:
+        logger.error(f"❌ No se pudo enviar el respaldo a la página: {e}")
 
 
 async def _traer_desde_puente() -> ReporteActual:
@@ -85,6 +128,9 @@ async def _ejecutar_scraping():
             logger.error(f"❌ Error guardando en DB: {e}")
         finally:
             db.close()
+
+        if MODO == "mina":
+            await _enviar_respaldo(reporte)
 
     except Exception as e:
         logger.error(f"❌ Error en scraping: {e}")

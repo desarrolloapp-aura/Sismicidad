@@ -45,6 +45,7 @@ export function Resumen({ reporte, error, onAbrir }) {
 
   let situacion = 'Todavía no hay una lectura para evaluar el estado.';
   if (error && !reporte) situacion = 'No hay lectura disponible. La consulta falló.';
+  else if (reporte?.fuente === 'respaldo') situacion = `Sin conexión con la mina. Se muestran los últimos datos que envió el PC de la mina (${formatDatetime(reporte.timestamp_consulta)}). No es la situación actual.`;
   else if (reporte?.fuente === 'copia_local') situacion = 'Se muestra la copia guardada de la tabla. No es una conexión en vivo con la mina.';
   else if (alertas.length > 0) situacion = `${alertas.length} polígono${alertas.length === 1 ? '' : 's'} fuera de Centro. Hay que avisar a personal.`;
   else if (sectores.length > 0) situacion = 'En esta lectura, los polígonos informados están en Centro.';
@@ -123,7 +124,7 @@ export function Resumen({ reporte, error, onAbrir }) {
             </ul>
           </section>
 
-          <section className={`tarjeta-aviso ${alertas.length > 0 ? 'rojo' : ''}`}>
+          <section className={`tarjeta-aviso ${reporte?.fuente === 'respaldo' ? 'ambar' : alertas.length > 0 ? 'rojo' : ''}`}>
             <h2>Situación</h2>
             <p>{situacion}</p>
             {alertas.length > 0 && (
