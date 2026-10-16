@@ -1385,7 +1385,7 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   font-size: 0.78rem;
 }
 .grafico-prueba-lienzo {
-  background: #f3f6f8;
+  background: #ffffff;
   border-radius: 6px;
   padding: 8px 4px 0;
 }

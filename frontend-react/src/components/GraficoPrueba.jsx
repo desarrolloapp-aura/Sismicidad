@@ -11,6 +11,11 @@ const POLIGONOS = [
   'Esmeralda Extension Fw Bloque 2',
 ];
 
+const DIAS = 7;
+const POR_HORA = 2;
+const POR_DIA = 24 * POR_HORA;
+const VENTANA = POR_DIA;
+
 function semilla(texto) {
   let n = 7;
   for (const letra of texto) n = (n * 33 + letra.charCodeAt(0)) % 1000003;
@@ -23,42 +28,60 @@ function serie(nombre) {
     x = (x * 1664525 + 1013904223) % 4294967296;
     return x / 4294967296;
   };
-  const base = 6 + Math.floor(aleatorio() * 6);
-  let eventos = base + 2;
-  let promedio = base;
-  let referencia = base + 5;
+
+  const total = DIAS * POR_DIA + VENTANA;
+  const nivelBase = 5 + aleatorio() * 6;
+  const eventos = [];
+  let valor = nivelBase;
+  for (let i = 0; i < total; i += 1) {
+    const nivel = nivelBase + Math.sin(i / 38) * nivelBase * 0.55 + Math.sin(i / 11) * 1.5;
+    if (aleatorio() > 0.5) valor += (nivel - valor) * 0.3 + (aleatorio() - 0.5) * 3.5;
+    eventos.push(Math.max(0, Math.round(valor)));
+  }
+
   const puntos = [];
-  for (let i = 0; i < 84; i += 1) {
-    if (aleatorio() > 0.22) {
-      const salto = 1 + Math.floor(aleatorio() * 3);
-      eventos = Math.max(1, Math.min(18, eventos + (aleatorio() > 0.5 ? salto : -salto)));
+  let superior = 0;
+  let inferior = 0;
+  for (let i = VENTANA; i < total; i += 1) {
+    const tramo = eventos.slice(i - VENTANA, i);
+    const promedio = tramo.reduce((suma, n) => suma + n, 0) / VENTANA;
+    if ((i - VENTANA) % 6 === 0) {
+      const margen = 2 * Math.sqrt(promedio) + 1;
+      superior = Math.round(promedio + margen);
+      inferior = Math.max(0, Math.round(promedio - margen));
     }
-    if (i % 6 === 0) promedio = Math.max(2, Math.min(16, promedio + (aleatorio() > 0.5 ? 1 : -1)));
-    if (i % 12 === 0 && aleatorio() > 0.3) referencia = base + 4 + Math.round(aleatorio() * 5);
-    const dia = Math.floor(i / 12) + 1;
-    const hora = (i % 12) * 2;
+    const indice = i - VENTANA;
+    const dia = Math.floor(indice / POR_DIA) + 1;
+    const minutos = (indice % POR_DIA) * (60 / POR_HORA);
+    const hora = `${String(Math.floor(minutos / 60)).padStart(2, '0')}:${String(minutos % 60).padStart(2, '0')}`;
     puntos.push({
-      fecha: `D${dia} ${String(hora).padStart(2, '0')}h`,
-      eventos,
-      promedio,
-      referencia,
-      magnitud: i % 7 === 0 ? Math.round((-0.25 - aleatorio() * 1.15) * 100) / 100 : null,
+      fecha: `Día ${dia} ${hora}`,
+      eventos: eventos[i],
+      promedio: Math.round(promedio * 10) / 10,
+      superior,
+      inferior,
+      magnitud: aleatorio() > 0.93 ? Math.round((-0.2 - aleatorio() * 1.3) * 100) / 100 : null,
     });
   }
   return puntos;
+}
+
+function etiquetaDia(fecha) {
+  return fecha.endsWith(' 00:00') ? fecha.replace(' 00:00', '') : '';
 }
 
 export function GraficoPrueba({ nombreInicial }) {
   const inicial = POLIGONOS.includes(nombreInicial) ? nombreInicial : POLIGONOS[0];
   const [nombre, setNombre] = useState(inicial);
   const puntos = useMemo(() => serie(nombre), [nombre]);
+  const marcas = useMemo(() => puntos.filter((_, i) => i % (6 * POR_HORA) === 0).map((p) => p.fecha), [puntos]);
 
   return (
     <section className="grafico-prueba">
       <div className="modulo-head">
         <div>
           <h3>Tendencia de ejemplo</h3>
-          <p>Datos de prueba para ver el gráfico. No son una lectura de la mina ni un criterio de alerta.</p>
+          <p>Datos de prueba para ver el gráfico. No son una lectura de la mina y la banda no es un criterio de alerta.</p>
         </div>
         <select aria-label="Polígono de prueba" value={nombre} onChange={(event) => setNombre(event.target.value)}>
           {POLIGONOS.map((item) => <option key={item} value={item}>{item}</option>)}
@@ -66,18 +89,42 @@ export function GraficoPrueba({ nombreInicial }) {
       </div>
       <p className="aviso-prueba">Datos de prueba</p>
       <div className="grafico-prueba-lienzo">
-        <ResponsiveContainer width="100%" height={360}>
+        <ResponsiveContainer width="100%" height={420}>
           <ComposedChart data={puntos} margin={{ top: 16, right: 24, left: 8, bottom: 8 }}>
-            <CartesianGrid stroke="#d5dee8" strokeDasharray="3 3" />
-            <XAxis dataKey="fecha" tick={{ fill: '#4d6074', fontSize: 11 }} interval={11} />
-            <YAxis yAxisId="eventos" tick={{ fill: '#4d6074', fontSize: 11 }} width={42} label={{ value: 'Eventos', angle: -90, position: 'insideLeft', fill: '#4d6074', fontSize: 11 }} />
-            <YAxis yAxisId="mag" orientation="right" domain={[-1.6, 0.2]} tick={{ fill: '#4d6074', fontSize: 11 }} width={48} label={{ value: 'Magnitud', angle: 90, position: 'insideRight', fill: '#4d6074', fontSize: 11 }} />
+            <CartesianGrid horizontal={false} stroke="#7b8794" strokeDasharray="2 4" />
+            <XAxis
+              dataKey="fecha"
+              ticks={marcas}
+              interval={0}
+              tickFormatter={etiquetaDia}
+              tick={{ fill: '#1f2a36', fontSize: 12, fontWeight: 600 }}
+              stroke="#1f2a36"
+            />
+            <YAxis
+              yAxisId="eventos"
+              tick={{ fill: '#1f2a36', fontSize: 12 }}
+              stroke="#1f2a36"
+              width={46}
+              allowDecimals={false}
+              label={{ value: 'N° eventos', angle: -90, position: 'insideLeft', fill: '#1f2a36', fontSize: 12, fontWeight: 600 }}
+            />
+            <YAxis
+              yAxisId="mag"
+              orientation="right"
+              domain={[-1.6, 0.2]}
+              ticks={[-1.6, -1.4, -1.2, -1, -0.8, -0.6, -0.4, -0.2, 0, 0.2]}
+              tick={{ fill: '#1f2a36', fontSize: 11 }}
+              stroke="#1f2a36"
+              width={48}
+              label={{ value: 'Magnitud', angle: 90, position: 'insideRight', fill: '#1f2a36', fontSize: 12, fontWeight: 600 }}
+            />
             <Tooltip />
             <Legend />
-            <Line yAxisId="eventos" type="stepAfter" dataKey="referencia" name="Referencia visual" stroke="#3aa0b8" strokeWidth={2} dot={false} isAnimationActive={false} />
-            <Line yAxisId="eventos" type="stepAfter" dataKey="eventos" name="Eventos" stroke="#d64545" strokeWidth={1.5} dot={false} isAnimationActive={false} />
-            <Line yAxisId="eventos" type="stepAfter" dataKey="promedio" name="Promedio móvil" stroke="#2c6cb0" strokeWidth={2} dot={false} isAnimationActive={false} />
-            <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#2f9e6b" shape="triangle" />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="superior" name="Banda de ejemplo" stroke="#17b3b3" strokeWidth={2.4} dot={false} isAnimationActive={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="inferior" name="Banda inferior de ejemplo" stroke="#17b3b3" strokeWidth={2.4} dot={false} isAnimationActive={false} legendType="none" />
+            <Line yAxisId="eventos" type="linear" dataKey="promedio" name="Promedio móvil 24 h" stroke="#1f3fd6" strokeWidth={2.4} dot={false} isAnimationActive={false} />
+            <Line yAxisId="eventos" type="stepAfter" dataKey="eventos" name="Eventos" stroke="#e02424" strokeWidth={2.4} dot={false} isAnimationActive={false} />
+            <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
