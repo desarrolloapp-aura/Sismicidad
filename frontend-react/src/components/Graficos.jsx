@@ -3,6 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceArea
 } from 'recharts';
 import { API_BASE } from '../api';
+import { GraficoPrueba } from './GraficoPrueba';
 
 // Tooltip personalizado para el gráfico
 const CustomTooltip = ({ active, payload, label }) => {
@@ -139,16 +140,14 @@ export function Graficos({ secondsLeft }) {
         </div>
       </div>
 
-      <div className="sector-card" style={{ padding: '24px 20px', height: '500px' }}>
+      <div className="sector-card" style={{ padding: '24px 20px', height: chartData.length === 0 ? 'auto' : '500px' }}>
         {loading && chartData.length === 0 ? (
           <div className="loading-state" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="loading-spinner"></div>
             <p>Cargando datos históricos...</p>
           </div>
         ) : chartData.length === 0 ? (
-          <div className="error-state" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p>No hay lecturas sucesivas para este polígono. La copia guardada es un solo momento, no una serie de frecuencia.</p>
-          </div>
+          <GraficoPrueba nombreInicial={selectedSector} />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart

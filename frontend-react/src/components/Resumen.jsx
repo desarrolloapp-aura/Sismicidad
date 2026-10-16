@@ -1,3 +1,5 @@
+import { GraficoPrueba } from './GraficoPrueba';
+
 function formatDatetime(isoStr) {
   if (!isoStr) return '—';
   const d = new Date(isoStr);
@@ -56,6 +58,7 @@ export function Resumen({ reporte, error }) {
           <p className="detalle">Mayor frecuencia en 24 h: {mayor.nombre}, {mayor.frec_24h}.</p>
         )}
       </div>
+      <GraficoPrueba nombreInicial="Bajo Diamante Esmeralda" />
     </section>
   );
 }
