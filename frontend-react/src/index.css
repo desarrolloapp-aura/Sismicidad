@@ -393,6 +393,7 @@ input::placeholder { color: #8b9aab; }
 }
 
 .kpis strong.rojo { color: #be123c; }
+.kpis strong.fecha { font-size: 18px; line-height: 31px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* Tarjetas */
 .tarjeta {

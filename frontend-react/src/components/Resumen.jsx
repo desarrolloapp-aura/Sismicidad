@@ -54,7 +54,7 @@ export function Resumen({ reporte, error, onAbrir }) {
     { etiqueta: 'En Centro', valor: reporte ? reporte.total_ok : '—', icono: TRAZOS.ok },
     { etiqueta: 'Alertas', valor: reporte ? reporte.total_danger : '—', icono: TRAZOS.alerta, clase: reporte?.total_danger > 0 ? 'rojo' : '' },
     { etiqueta: 'Mayor frec. 24 h', valor: mayor && frecuencia(mayor) != null ? mostrar(mayor.frec_24h) : '—', icono: TRAZOS.frecuencia },
-    { etiqueta: 'Última lectura', valor: fechaCorta(reporte?.timestamp_geovita), icono: TRAZOS.reloj, titulo: lectura },
+    { etiqueta: 'Última lectura', valor: fechaCorta(reporte?.timestamp_geovita), icono: TRAZOS.reloj, titulo: lectura, clase: 'fecha' },
   ];
 
   return (
