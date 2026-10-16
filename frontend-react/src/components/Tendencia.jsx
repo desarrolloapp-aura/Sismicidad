@@ -76,14 +76,15 @@ function eje(desde, hasta) {
   }
   const marcas = [];
   if (hasta - desde >= 36 * HORA) {
-    const dia = new Date(desde);
-    dia.setHours(0, 0, 0, 0);
-    if (dia.getTime() < desde) dia.setDate(dia.getDate() + 1);
-    while (dia.getTime() <= hasta) {
-      marcas.push(dia.getTime());
-      dia.setDate(dia.getDate() + 1);
+    const marca = new Date(desde);
+    marca.setMinutes(0, 0, 0);
+    marca.setHours(Math.ceil(marca.getHours() / 6) * 6);
+    if (marca.getTime() < desde) marca.setHours(marca.getHours() + 6);
+    while (marca.getTime() <= hasta) {
+      marcas.push(marca.getTime());
+      marca.setHours(marca.getHours() + 6);
     }
-    return { dominio: [desde, hasta], marcas, formato: fechaLarga };
+    return { dominio: [desde, hasta], marcas, formato: (ms) => (esMedianoche(ms) ? fechaLarga(ms) : '') };
   }
   const paso = (PASOS_MINUTOS.find((m) => (hasta - desde) / (m * MINUTO) <= 8) || 720) * MINUTO;
   const desfase = new Date(desde).getTimezoneOffset() * MINUTO;
@@ -112,8 +113,21 @@ function zonasAlerta(puntos) {
   return zonas;
 }
 
+function escalaMagnitud(puntos) {
+  const valores = puntos.map((p) => p.magnitud).filter((m) => m != null);
+  if (valores.length === 0) return { dominio: [-1.6, 0.2], marcas: [-1.6, -1.4, -1.2, -1, -0.8, -0.6, -0.4, -0.2, 0, 0.2] };
+  const minimo = Math.floor((Math.min(...valores) - 0.1) * 5) / 5;
+  const maximo = Math.ceil((Math.max(...valores) + 0.1) * 5) / 5;
+  const paso = maximo - minimo > 2.4 ? 0.5 : 0.2;
+  const desde = Math.floor(minimo / paso) * paso;
+  const marcas = [];
+  for (let m = desde; m <= maximo + 1e-9; m += paso) marcas.push(Math.round(m * 10) / 10);
+  return { dominio: [marcas[0], marcas[marcas.length - 1]], marcas };
+}
+
 function GraficoReal({ puntos }) {
   const { dominio, marcas, formato } = eje(puntos[0].t, puntos[puntos.length - 1].t);
+  const magnitud = escalaMagnitud(puntos);
   const zonas = zonasAlerta(puntos);
 
   return (
@@ -127,8 +141,7 @@ function GraficoReal({ puntos }) {
           domain={dominio}
           ticks={marcas}
           tickFormatter={formato}
-          interval="preserveStartEnd"
-          minTickGap={16}
+          interval={0}
           tick={{ fill: TINTA, fontSize: 12, fontWeight: 600 }}
           stroke={TINTA}
         />
@@ -138,12 +151,14 @@ function GraficoReal({ puntos }) {
           stroke={TINTA}
           width={46}
           allowDecimals={false}
-          label={{ value: 'Frecuencia 24 h', angle: -90, position: 'insideLeft', fill: TINTA, fontSize: 12, fontWeight: 600 }}
+          label={{ value: 'N° eventos', angle: -90, position: 'insideLeft', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
         <YAxis
           yAxisId="mag"
           orientation="right"
-          domain={[(min) => Math.floor((min - 0.1) * 5) / 5, (max) => Math.ceil((max + 0.1) * 5) / 5]}
+          domain={magnitud.dominio}
+          ticks={magnitud.marcas}
+          allowDataOverflow
           tick={{ fill: TINTA, fontSize: 11 }}
           stroke={TINTA}
           width={48}
@@ -155,8 +170,8 @@ function GraficoReal({ puntos }) {
           <ReferenceArea key={zona.x1} yAxisId="frec" x1={zona.x1} x2={zona.x2} fill="rgba(225, 29, 72, 0.12)" strokeOpacity={0} />
         ))}
         <Line yAxisId="frec" type="stepAfter" dataKey="promedio" name="Promedio móvil 72 h" stroke="#1f3fd6" strokeWidth={2.4} dot={false} isAnimationActive={false} />
-        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Frecuencia 24 h" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
-        <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud máx. 24 h" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
+        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Eventos 24 h" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
+        <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
       </ComposedChart>
     </ResponsiveContainer>
   );
