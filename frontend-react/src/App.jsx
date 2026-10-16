@@ -6,21 +6,11 @@ import { Historial } from './components/Historial';
 import { Graficos } from './components/Graficos';
 import { useSectores } from './hooks/useSectores';
 
-function formatDatetime(isoStr) {
-  if (!isoStr) return '—';
-  const d = new Date(isoStr);
-  return d.toLocaleString('es-CL', {
-    day: '2-digit', month: '2-digit', year: 'numeric',
-    hour: '2-digit', minute: '2-digit', second: '2-digit'
-  });
-}
-
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const { reporte, loading, error, secondsLeft } = useSectores();
 
   const alertas = (reporte?.sectores || []).filter((s) => s.estado === 'danger');
-  const copiaLocal = reporte?.fuente === 'copia_local';
 
   return (
     <div className="app-wrapper">
@@ -34,14 +24,6 @@ function App() {
       )}
 
       {!error && <SummaryStats reporte={reporte} />}
-
-      {copiaLocal && (
-        <div className="copia-banner">
-          Copia guardada
-          {reporte?.timestamp_geovita ? ` del ${formatDatetime(reporte.timestamp_geovita)}` : ''}.
-          En la red de la mina se actualiza sola.
-        </div>
-      )}
 
       {alertas.length > 0 && (
         <div className="alerta-banner">

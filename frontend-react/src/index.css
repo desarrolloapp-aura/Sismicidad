@@ -1,25 +1,25 @@
 :root {
-  --bg-primary: #1c2430;
-  --bg-secondary: #243140;
-  --bg-card: #2a3648;
-  --bg-card-hover: #314056;
+  --bg-primary: #16181b;
+  --bg-secondary: #1d2024;
+  --bg-card: #23272c;
+  --bg-card-hover: #2a2f35;
   --border-color: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(255, 255, 255, 0.16);
 
-  --ok-start: #00b894;
-  --ok-end: #00cec9;
-  --ok-glow: rgba(0, 184, 148, 0.25);
+  --ok-start: #8ea58a;
+  --ok-end: #8ea58a;
+  --ok-glow: rgba(142, 165, 138, 0.2);
 
-  --danger-start: #d63031;
-  --danger-end: #e17055;
-  --danger-glow: rgba(214, 48, 49, 0.3);
+  --danger-start: #c48b84;
+  --danger-end: #c48b84;
+  --danger-glow: rgba(196, 139, 132, 0.22);
 
-  --text-primary: #e7edf4;
-  --text-secondary: #c5d0dc;
-  --text-muted: #8ea0b5;
-  --accent: #9eb0c4;
-  --accent-dark: #3182ce;
-  --gold: #fbbf24;
+  --text-primary: #f3f1ed;
+  --text-secondary: #c9c4bb;
+  --text-muted: #8f8a82;
+  --accent: #d7c4a8;
+  --accent-dark: #8d8376;
+  --gold: #d7c4a8;
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -59,9 +59,9 @@ body::before { content: none; }
 
 /* ── Header ── */
 .header {
-  background: #243140;
+  background: #1d2024;
   border-bottom: 1px solid var(--border-color);
-  padding: 20px 32px;
+  padding: 16px 32px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -854,6 +854,22 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   .sc-fila { grid-template-columns: 1fr; gap: 2px; }
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: #f4f1ec;
+  border-radius: 8px;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
 .header-kicker {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
@@ -890,8 +906,8 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 
 .summary-card:hover { transform: none; }
 
-.ok-val { color: #8fbfa4; }
-.danger-val { color: #e0a3a3; }
+.ok-val { color: #b7c4b3; }
+.danger-val { color: #e0b2ac; }
 
 .update-val { font-size: 0.95rem; font-weight: 600; }
 
@@ -902,10 +918,10 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 }
 
 .sectores-grid .sector-card {
-  background: #2a3648;
+  background: #23272c;
   color: var(--text-primary);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid #6fad8c;
+  border-left: 3px solid #8ea58a;
   border-radius: 6px;
   padding: 16px 18px 12px;
   box-shadow: none;
@@ -914,20 +930,20 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 .sectores-grid .sector-card::before { content: none; }
 
 .sectores-grid .sector-card.danger {
-  border-left-color: #c47a7a;
+  border-left-color: #c48b84;
 }
 
 .sectores-grid .sector-card:hover,
 .sectores-grid .sector-card.ok:hover,
 .sectores-grid .sector-card.danger:hover {
   transform: none;
-  background: #2a3648;
+  background: #23272c;
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: none;
 }
 
-.sectores-grid .sector-card.ok:hover { border-left-color: #6fad8c; }
-.sectores-grid .sector-card.danger:hover { border-left-color: #c47a7a; }
+.sectores-grid .sector-card.ok:hover { border-left-color: #8ea58a; }
+.sectores-grid .sector-card.danger:hover { border-left-color: #c48b84; }
 
 .sectores-grid .sector-card.principal { border-left-width: 3px; }
 
@@ -968,10 +984,10 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #8fbfa4;
+  color: #b7c4b3;
 }
 
-.sectores-grid .sc-estado.danger { color: #e0a3a3; }
+.sectores-grid .sc-estado.danger { color: #e0b2ac; }
 
 .sectores-grid .sc-aviso {
   margin: 2px 0 0;
@@ -1019,7 +1035,7 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .copia-banner {
@@ -1029,13 +1045,13 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 }
 
 .alerta-banner {
-  background: #3a2c32;
-  border: 1px solid rgba(224, 163, 163, 0.35);
-  color: #e0a3a3;
+  background: #2c2423;
+  border: 1px solid rgba(196, 139, 132, 0.4);
+  color: #e0b2ac;
 }
 
 .footer {
-  background: #243140;
+  background: #1d2024;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
 }
@@ -1048,7 +1064,7 @@ td.nombre-col { color: var(--text-primary); font-weight: 600; }
 .filter-btn.active.ok,
 .filter-btn.active.danger,
 .filter-btn.active.all {
-  background: #314056;
+  background: #2a2f35;
   color: var(--text-primary);
   border-color: rgba(255, 255, 255, 0.16);
 }
