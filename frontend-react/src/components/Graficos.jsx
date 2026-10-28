@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API_BASE } from '../api';
 import { Tendencia } from './Tendencia';
+import { esVisible } from '../visibles';
 
 export function Graficos() {
   const [sectores, setSectores] = useState([]);
@@ -11,8 +12,9 @@ export function Graficos() {
       try {
         const res = await fetch(`${API_BASE}/api/sectores/estado-actual`);
         const data = await res.json();
-        const nombres = data.sectores.map(s => s.nombre);
-        const principal = data.sectores.find(s => s.principal)?.nombre;
+        const lista = data.sectores.filter((s) => esVisible(s.nombre));
+        const nombres = lista.map(s => s.nombre);
+        const principal = lista.find(s => s.principal)?.nombre;
         setSectores(nombres);
         if (nombres.length > 0) setSelectedSector((actual) => actual || principal || nombres[0]);
       } catch (err) {

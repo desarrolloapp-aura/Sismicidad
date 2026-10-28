@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API_BASE } from '../api';
+import { esVisible } from '../visibles';
 
 function formatDatetime(isoStr) {
   if (!isoStr) return '—';
@@ -35,7 +36,8 @@ export function Historial() {
         if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
         const data = await res.json();
 
-        setDatos(data.datos);
+        const filas = (data.datos || []).filter((fila) => esVisible(fila.nombre));
+        setDatos(filas);
         setTotal(data.total);
         setError(null);
       } catch (err) {

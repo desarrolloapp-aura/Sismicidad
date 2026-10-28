@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API_BASE } from '../api';
+import { esVisible } from '../visibles';
 const REFRESH_INTERVAL = 60; // 60 seconds
 
 export function useSectores() {
@@ -25,6 +26,9 @@ export function useSectores() {
         throw new Error(detalle);
       }
       const data = await res.json();
+      if (Array.isArray(data.sectores)) {
+        data.sectores = data.sectores.filter((sector) => esVisible(sector.nombre));
+      }
       setReporte(data);
       setError(null);
     } catch (err) {
