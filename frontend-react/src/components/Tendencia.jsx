@@ -22,6 +22,10 @@ function fechaLarga(ms) {
   return new Date(ms).toLocaleDateString('es-CL', { day: 'numeric', month: 'long' });
 }
 
+function fechaDia(ms) {
+  return new Date(ms).toLocaleDateString('es-CL', { day: 'numeric', month: 'short' }).replace('.', '');
+}
+
 function hora(ms) {
   return new Date(ms).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', hour12: false });
 }
@@ -75,16 +79,17 @@ function eje(desde, hasta) {
     hasta += 30 * MINUTO;
   }
   const marcas = [];
-  if (hasta - desde >= 36 * HORA) {
-    const marca = new Date(desde);
-    marca.setMinutes(0, 0, 0);
-    marca.setHours(Math.ceil(marca.getHours() / 6) * 6);
-    if (marca.getTime() < desde) marca.setHours(marca.getHours() + 6);
-    while (marca.getTime() <= hasta) {
-      marcas.push(marca.getTime());
-      marca.setHours(marca.getHours() + 6);
+  const dia = new Date(desde);
+  dia.setHours(0, 0, 0, 0);
+  const ultimo = new Date(hasta);
+  ultimo.setHours(0, 0, 0, 0);
+  if (ultimo.getTime() > dia.getTime()) {
+    while (dia.getTime() <= hasta) {
+      const t = Math.max(dia.getTime(), desde);
+      if (t <= hasta) marcas.push(t);
+      dia.setDate(dia.getDate() + 1);
     }
-    return { dominio: [desde, hasta], marcas, formato: (ms) => (esMedianoche(ms) ? fechaLarga(ms) : '') };
+    return { dominio: [desde, hasta], marcas, formato: fechaDia };
   }
   const paso = (PASOS_MINUTOS.find((m) => (hasta - desde) / (m * MINUTO) <= 8) || 720) * MINUTO;
   const desfase = new Date(desde).getTimezoneOffset() * MINUTO;
