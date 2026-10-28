@@ -8,7 +8,6 @@ import { LienzoPrueba } from './GraficoPrueba';
 const HORAS = 168;
 const MINUTO = 60000;
 const HORA = 60 * MINUTO;
-const VENTANA_PROMEDIO = 72 * HORA;
 const PASOS_MINUTOS = [5, 10, 15, 30, 60, 120, 180, 360, 720];
 const TINTA = '#1f2a36';
 
@@ -44,32 +43,19 @@ function preparar(registros) {
     .map((r) => ({
       t: new Date(r.timestamp_scraping).getTime(),
       frec: numero(r.frec_24h),
+      media7: numero(r.frec_7d),
       magMax: numero(r.mag_max_24h),
       estado: r.estado,
     }))
     .filter((p) => Number.isFinite(p.t))
     .sort((a, b) => a.t - b.t);
 
-  let inicio = 0;
-  let suma = 0;
-  let cuenta = 0;
   let magAnterior = null;
   return puntos.map((p) => {
-    if (p.frec != null) {
-      suma += p.frec;
-      cuenta += 1;
-    }
-    while (puntos[inicio].t < p.t - VENTANA_PROMEDIO) {
-      if (puntos[inicio].frec != null) {
-        suma -= puntos[inicio].frec;
-        cuenta -= 1;
-      }
-      inicio += 1;
-    }
     const conEventos = p.frec != null && p.frec > 0;
     const magnitud = conEventos && p.magMax != null && p.magMax !== magAnterior ? p.magMax : null;
     if (conEventos) magAnterior = p.magMax;
-    return { ...p, promedio: cuenta ? Math.round((suma / cuenta) * 10) / 10 : null, magnitud };
+    return { ...p, magnitud };
   });
 }
 
@@ -191,9 +177,9 @@ function GraficoReal({ puntos }) {
         {zonas.map((zona) => (
           <ReferenceArea key={zona.x1} yAxisId="frec" x1={zona.x1} x2={zona.x2} fill="rgba(225, 29, 72, 0.12)" strokeOpacity={0} />
         ))}
-        <Line yAxisId="frec" type="stepAfter" dataKey="promedio" name="Promedio móvil 72 h" stroke="#1f3fd6" strokeWidth={2.4} dot={false} isAnimationActive={false} />
-        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Eventos 24 h" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
-        <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
+        <Line yAxisId="frec" type="stepAfter" dataKey="media7" name="Media 7 días" stroke="#1f3fd6" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
+        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Media diaria" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
+        <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud máxima" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
       </ComposedChart>
     </ResponsiveContainer>
   );
@@ -241,7 +227,7 @@ export function Tendencia({ nombre, poligonos = [], inicial }) {
           </h2>
           <p>
             {real
-              ? `${actual}. Lecturas del PC de la mina del ${fechaHora(puntos[0].t)} al ${fechaHora(puntos[puntos.length - 1].t)}. En rojo, cuando estuvo fuera de Centro.`
+              ? `${actual}. La roja es la media diaria y la azul es la media de 7 días, como las publica Codelco. Del ${fechaHora(puntos[0].t)} al ${fechaHora(puntos[puntos.length - 1].t)}.`
               : `${actual || 'Polígono de ejemplo'}. No son una lectura de la mina y la banda no es un criterio de alerta.`}
           </p>
         </div>
