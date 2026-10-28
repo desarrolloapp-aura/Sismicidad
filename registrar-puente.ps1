@@ -36,7 +36,8 @@ $env:SISMICO_MODO = "mina"
 Start-Process -FilePath "cmd.exe" -ArgumentList "/k", "set SISMICO_MODO=mina&& `"$python`" -m uvicorn app.main:app --host 127.0.0.1 --port 8030" -WorkingDirectory (Join-Path $root "backend")
 
 if (Test-Path $log) { Remove-Item $log -Force }
-Start-Process -FilePath $cloudflared -ArgumentList "tunnel --url http://127.0.0.1:8030 --logfile `"$log`" --loglevel info"
+# http2 sale por el puerto 443. En la red de la mina el protocolo quic (UDP) queda bloqueado.
+Start-Process -FilePath $cloudflared -ArgumentList "tunnel --protocol http2 --url http://127.0.0.1:8030 --logfile `"$log`" --loglevel info"
 
 $direccion = $null
 for ($i = 0; $i -lt 45; $i++) {

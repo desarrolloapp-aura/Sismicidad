@@ -125,6 +125,23 @@ function escalaMagnitud(puntos) {
   return { dominio: [marcas[0], marcas[marcas.length - 1]], marcas };
 }
 
+function TooltipReal({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+  const filas = payload.filter((item) => item.dataKey !== 't' && item.value != null);
+  return (
+    <div className="grafico-tooltip">
+      <p className="grafico-tooltip-hora">{fechaHora(label)}</p>
+      {filas.map((item) => (
+        <p key={item.dataKey} className="grafico-tooltip-fila">
+          <i style={{ background: item.color }} />
+          <span>{item.name}</span>
+          <strong>{item.value}</strong>
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function GraficoReal({ puntos }) {
   const { dominio, marcas, formato } = eje(puntos[0].t, puntos[puntos.length - 1].t);
   const magnitud = escalaMagnitud(puntos);
@@ -164,7 +181,7 @@ function GraficoReal({ puntos }) {
           width={48}
           label={{ value: 'Magnitud', angle: 90, position: 'insideRight', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
-        <Tooltip labelFormatter={fechaHora} />
+        <Tooltip content={<TooltipReal />} />
         <Legend />
         {zonas.map((zona) => (
           <ReferenceArea key={zona.x1} yAxisId="frec" x1={zona.x1} x2={zona.x2} fill="rgba(225, 29, 72, 0.12)" strokeOpacity={0} />
