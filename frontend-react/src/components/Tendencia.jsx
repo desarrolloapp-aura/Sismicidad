@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
-  CartesianGrid, ComposedChart, Legend, Line, ReferenceArea, ResponsiveContainer, Scatter, Tooltip, XAxis, YAxis,
+  CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Scatter, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import { API_BASE } from '../api';
 import { LienzoPrueba } from './GraficoPrueba';
@@ -33,12 +33,42 @@ function fechaHora(ms) {
   return `${fechaLarga(ms)}, ${hora(ms)}`;
 }
 
-function esMedianoche(ms) {
+function inicioDeDia(ms) {
   const fecha = new Date(ms);
-  return fecha.getHours() === 0 && fecha.getMinutes() === 0;
+  fecha.setHours(0, 0, 0, 0);
+  return fecha.getTime();
 }
 
-function preparar(registros) {
+function cruzaDia(desde, hasta) {
+  return inicioDeDia(hasta) > inicioDeDia(desde);
+}
+
+/** Una marca al centro de cada día visible, para que el día nuevo no se esconda en el borde. */
+function marcasDias(desde, hasta) {
+  const marcas = [];
+  const cursor = new Date(inicioDeDia(desde));
+  const ultimo = inicioDeDia(hasta);
+  while (cursor.getTime() <= ultimo) {
+    const siguiente = new Date(cursor);
+    siguiente.setDate(siguiente.getDate() + 1);
+    const visibleDesde = Math.max(cursor.getTime(), desde);
+    const visibleHasta = Math.min(siguiente.getTime() - 1, hasta);
+    if (visibleHasta >= visibleDesde) marcas.push(visibleDesde + Math.round((visibleHasta - visibleDesde) / 2));
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return marcas;
+}
+
+/** Pocas horas, alineadas al reloj, para que no se monten en el celular. */
+function marcasHoras(desde, hasta, maximo) {
+  const paso = (PASOS_MINUTOS.find((m) => (hasta - desde) / (m * MINUTO) <= maximo) || 720) * MINUTO;
+  const desfase = new Date(desde).getTimezoneOffset() * MINUTO;
+  const marcas = [];
+  for (let t = Math.ceil((desde - desfase) / paso) * paso + desfase; t <= hasta; t += paso) marcas.push(t);
+  return marcas;
+}
+
+export function preparar(registros) {
   const puntos = registros
     .map((r) => ({
       t: new Date(r.timestamp_scraping).getTime(),
@@ -59,49 +89,28 @@ function preparar(registros) {
   });
 }
 
-function eje(desde, hasta) {
+function ejeComun(desde, hasta, maxHoras, rotuloDia) {
   if (hasta - desde < 10 * MINUTO) {
     desde -= 30 * MINUTO;
     hasta += 30 * MINUTO;
   }
-  const marcas = [];
-  const dia = new Date(desde);
-  dia.setHours(0, 0, 0, 0);
-  const ultimo = new Date(hasta);
-  ultimo.setHours(0, 0, 0, 0);
-  if (ultimo.getTime() > dia.getTime()) {
-    while (dia.getTime() <= hasta) {
-      const t = Math.max(dia.getTime(), desde);
-      if (t <= hasta) marcas.push(t);
-      dia.setDate(dia.getDate() + 1);
-    }
-    return { dominio: [desde, hasta], marcas, formato: fechaDia };
+  if (cruzaDia(desde, hasta)) {
+    return { dominio: [desde, hasta], marcas: marcasDias(desde, hasta), formato: fechaDia, dia: null };
   }
-  const paso = (PASOS_MINUTOS.find((m) => (hasta - desde) / (m * MINUTO) <= 8) || 720) * MINUTO;
-  const desfase = new Date(desde).getTimezoneOffset() * MINUTO;
-  for (let t = Math.ceil((desde - desfase) / paso) * paso + desfase; t <= hasta; t += paso) marcas.push(t);
   return {
     dominio: [desde, hasta],
-    marcas,
-    formato: (ms) => {
-      if (esMedianoche(ms)) return fechaLarga(ms);
-      return ms === marcas[0] ? fechaHora(ms) : hora(ms);
-    },
+    marcas: marcasHoras(desde, hasta, maxHoras),
+    formato: hora,
+    dia: rotuloDia(desde),
   };
 }
 
-function zonasAlerta(puntos) {
-  const zonas = [];
-  let inicio = null;
-  puntos.forEach((p, i) => {
-    if (p.estado === 'danger' && inicio === null) inicio = p.t;
-    const termina = p.estado !== 'danger' || i === puntos.length - 1;
-    if (inicio !== null && termina) {
-      zonas.push({ x1: inicio, x2: p.t });
-      inicio = null;
-    }
-  });
-  return zonas;
+function eje(desde, hasta) {
+  return ejeComun(desde, hasta, 4, fechaLarga);
+}
+
+function ejeCompacto(desde, hasta) {
+  return ejeComun(desde, hasta, 3, fechaDia);
 }
 
 function escalaMagnitud(puntos) {
@@ -133,14 +142,17 @@ function TooltipReal({ active, payload, label }) {
   );
 }
 
-function GraficoReal({ puntos }) {
-  const { dominio, marcas, formato } = eje(puntos[0].t, puntos[puntos.length - 1].t);
-  const magnitud = escalaMagnitud(puntos);
-  const zonas = zonasAlerta(puntos);
+export function GraficoReal({ puntos, alto = 420, compacto = false }) {
+  const trazado = compacto ? ejeCompacto(puntos[0].t, puntos[puntos.length - 1].t) : eje(puntos[0].t, puntos[puntos.length - 1].t);
+  const { dominio, marcas, formato, dia } = trazado;
+  const magnitudCompleta = escalaMagnitud(puntos);
+  const magnitud = compacto
+    ? { ...magnitudCompleta, marcas: magnitudCompleta.marcas.filter((_, i) => i % 2 === 0) }
+    : magnitudCompleta;
 
   return (
-    <ResponsiveContainer width="100%" height={420}>
-      <ComposedChart data={puntos} margin={{ top: 16, right: 24, left: 8, bottom: 8 }}>
+    <ResponsiveContainer width="100%" height={alto}>
+      <ComposedChart data={puntos} margin={compacto ? { top: 8, right: 8, left: 0, bottom: dia ? 18 : 4 } : { top: 16, right: 24, left: 8, bottom: dia ? 8 : 4 }}>
         <CartesianGrid horizontal={false} stroke="#7b8794" strokeDasharray="2 4" />
         <XAxis
           dataKey="t"
@@ -150,16 +162,19 @@ function GraficoReal({ puntos }) {
           ticks={marcas}
           tickFormatter={formato}
           interval={0}
-          tick={{ fill: TINTA, fontSize: 12, fontWeight: 600 }}
+          height={dia ? 52 : 32}
+          tickMargin={8}
+          tick={{ fill: TINTA, fontSize: compacto ? 11 : 12, fontWeight: 600 }}
           stroke={TINTA}
+          label={dia ? { value: dia, position: 'insideBottom', offset: 0, fill: '#5c6b7a', fontSize: 12, fontWeight: 600 } : undefined}
         />
         <YAxis
           yAxisId="frec"
-          tick={{ fill: TINTA, fontSize: 12 }}
+          tick={{ fill: TINTA, fontSize: compacto ? 11 : 12 }}
           stroke={TINTA}
-          width={46}
+          width={compacto ? 32 : 46}
           allowDecimals={false}
-          label={{ value: 'N° eventos', angle: -90, position: 'insideLeft', fill: TINTA, fontSize: 12, fontWeight: 600 }}
+          label={compacto ? undefined : { value: 'N° eventos', angle: -90, position: 'insideLeft', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
         <YAxis
           yAxisId="mag"
@@ -169,14 +184,11 @@ function GraficoReal({ puntos }) {
           allowDataOverflow
           tick={{ fill: TINTA, fontSize: 11 }}
           stroke={TINTA}
-          width={48}
-          label={{ value: 'Magnitud', angle: 90, position: 'insideRight', fill: TINTA, fontSize: 12, fontWeight: 600 }}
+          width={compacto ? 36 : 48}
+          label={compacto ? undefined : { value: 'Magnitud', angle: 90, position: 'insideRight', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
         <Tooltip content={<TooltipReal />} />
-        <Legend />
-        {zonas.map((zona) => (
-          <ReferenceArea key={zona.x1} yAxisId="frec" x1={zona.x1} x2={zona.x2} fill="rgba(225, 29, 72, 0.12)" strokeOpacity={0} />
-        ))}
+        <Legend wrapperStyle={{ fontSize: compacto ? 12 : 14, paddingTop: 8 }} />
         <Line yAxisId="frec" type="stepAfter" dataKey="media7" name="Media 7 días" stroke="#1f3fd6" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
         <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Media diaria" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
         <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud máxima" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />

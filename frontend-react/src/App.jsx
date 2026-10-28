@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Resumen } from './components/Resumen';
+import { Muro } from './components/Muro';
 import { Monitoreo } from './components/Monitoreo';
-import { Graficos } from './components/Graficos';
 import { Historial } from './components/Historial';
 import { Buscador } from './components/Buscador';
 import { Icono, TRAZOS } from './components/Icono';
@@ -14,7 +14,6 @@ const GRUPOS = [
     items: [
       { id: 'resumen', nombre: 'Resumen general' },
       { id: 'poligonos', nombre: 'Monitoreo sísmico' },
-      { id: 'frecuencia', nombre: 'Frecuencia sísmica' },
       { id: 'historial', nombre: 'Historial' },
     ],
   },
@@ -41,7 +40,7 @@ function estadoConexion({ loading, refreshing, error, reporte }) {
   return { clase: 'atrasado', texto: 'Sin lectura' };
 }
 
-function App() {
+function Aplicacion() {
   const [modulo, setModulo] = useState('resumen');
   const [contraido, setContraido] = useState(false);
   const [movil, setMovil] = useState(false);
@@ -130,6 +129,10 @@ function App() {
                   {textoVisible && <span>{item.nombre}</span>}
                 </button>
               ))}
+              <a className="menu-btn" href="/muro" title={!textoVisible ? 'Muro de gráficos' : undefined} aria-label="Muro de gráficos">
+                <Icono>{TRAZOS.muro}</Icono>
+                {textoVisible && <span>Muro de gráficos</span>}
+              </a>
             </div>
           ))}
         </nav>
@@ -200,7 +203,6 @@ function App() {
               onBusqueda={setBusqueda}
             />
           )}
-          {modulo === 'frecuencia' && <Graficos />}
           {modulo === 'historial' && <Historial />}
         </main>
       </div>
@@ -212,4 +214,8 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  const ruta = window.location.pathname.replace(/\/+$/, '') || '/';
+  if (ruta === '/muro') return <Muro />;
+  return <Aplicacion />;
+}
