@@ -143,6 +143,7 @@ def _href(celda) -> str | None:
 
 
 async def _leer_tabla(html: str, base_url: str | None, cliente: httpx.AsyncClient | None) -> list[SectorEstado]:
+    """Lee todas las filas del resumen Codelco (no solo las de POLIGONOS)."""
     soup = BeautifulSoup(html, "lxml")
     encontrados: dict[str, SectorEstado] = {}
 
@@ -153,14 +154,18 @@ async def _leer_tabla(html: str, base_url: str | None, cliente: httpx.AsyncClien
         enlace = celdas[0].find("a")
         if not enlace:
             continue
-        nombre = enlace.get_text(strip=True)
-        ficha = buscar_poligono(nombre)
-        if ficha is None:
+        nombre_pagina = enlace.get_text(strip=True)
+        if not nombre_pagina:
             continue
+        ficha = buscar_poligono(nombre_pagina)
+        nombre = ficha["nombre"] if ficha else nombre_pagina
+        nombre_vista = (ficha.get("nombre_vista") if ficha else None) or nombre
+        grupo = ficha["grupo"] if ficha else "Otros"
+        principal = bool(ficha.get("principal")) if ficha else False
 
         estado_bytes = await _bytes_imagen(_src_img(celdas[1]) or "", base_url, cliente)
         if not estado_bytes:
-            logger.warning("Sin imagen de estado para %s", nombre)
+            logger.warning("Sin imagen de estado para %s", nombre_pagina)
             continue
         estado_label, estado = leer_estado(estado_bytes)
 
@@ -174,11 +179,12 @@ async def _leer_tabla(html: str, base_url: str | None, cliente: httpx.AsyncClien
             return leer_numero(raw)
 
         sector = SectorEstado(
-            nombre=ficha["nombre"],
+            nombre=nombre,
+            nombre_vista=nombre_vista,
             estado=estado,
             estado_label=estado_label,
-            grupo=ficha["grupo"],
-            principal=ficha["principal"],
+            grupo=grupo,
+            principal=principal,
             grafico_24h=_href(celdas[2]),
             frec_24h=await numero(3),
             mag_min_24h=await numero(4),
@@ -192,15 +198,22 @@ async def _leer_tabla(html: str, base_url: str | None, cliente: httpx.AsyncClien
             z_min_7d=await numero(12),
             z_max_7d=await numero(13),
         )
-        encontrados[_norm_nombre(ficha["nombre"])] = sector
+        encontrados[_norm_nombre(nombre)] = sector
 
+    # Primero los de la lista Aura (orden fijo); después el resto del resumen.
     ordenados = []
+    vistos: set[str] = set()
     for ficha in POLIGONOS:
-        sector = encontrados.get(_norm_nombre(ficha["nombre"]))
+        clave = _norm_nombre(ficha["nombre"])
+        sector = encontrados.get(clave)
         if sector:
             ordenados.append(sector)
+            vistos.add(clave)
         else:
             logger.warning("No apareció en la tabla: %s", ficha["nombre"])
+    for clave, sector in sorted(encontrados.items(), key=lambda item: item[1].nombre.lower()):
+        if clave not in vistos:
+            ordenados.append(sector)
     return ordenados, soup
 
 

@@ -1,3 +1,5 @@
+import { nombreVista } from '../lib/nombreVista';
+
 function valor(texto) {
   if (!texto || texto === '----') return '—';
   return texto;
@@ -24,7 +26,7 @@ export function SectorCard({ sector }) {
     <article className={`sector-card ${estadoClass} ${sector.principal ? 'principal' : ''}`}>
       <header className="sc-header">
         <div>
-          <h3 className="sc-name">{sector.nombre}</h3>
+          <h3 className="sc-name">{nombreVista(sector)}</h3>
           {sector.principal && <p className="sc-principal">Polígono principal</p>}
         </div>
         <div className="sc-estado-wrap">

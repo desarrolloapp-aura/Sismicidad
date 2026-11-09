@@ -3,6 +3,7 @@ import { Resumen } from './components/Resumen';
 import { Muro } from './components/Muro';
 import { Monitoreo } from './components/Monitoreo';
 import { Historial } from './components/Historial';
+import { Admin } from './components/Admin';
 import { Buscador } from './components/Buscador';
 import { Icono, TRAZOS } from './components/Icono';
 import { useSectores } from './hooks/useSectores';
@@ -15,6 +16,12 @@ const GRUPOS = [
       { id: 'resumen', nombre: 'Resumen general' },
       { id: 'poligonos', nombre: 'Monitoreo sísmico' },
       { id: 'historial', nombre: 'Historial' },
+    ],
+  },
+  {
+    titulo: 'Sistema',
+    items: [
+      { id: 'admin', nombre: 'Administración' },
     ],
   },
 ];
@@ -129,10 +136,12 @@ function Aplicacion() {
                   {textoVisible && <span>{item.nombre}</span>}
                 </button>
               ))}
-              <a className="menu-btn" href="/muro" title={!textoVisible ? 'Muro de gráficos' : undefined} aria-label="Muro de gráficos">
-                <Icono>{TRAZOS.muro}</Icono>
-                {textoVisible && <span>Muro de gráficos</span>}
-              </a>
+              {grupo.titulo === 'Monitoreo' && (
+                <a className="menu-btn" href="/muro" title={!textoVisible ? 'Muro de gráficos' : undefined} aria-label="Muro de gráficos">
+                  <Icono>{TRAZOS.muro}</Icono>
+                  {textoVisible && <span>Muro de gráficos</span>}
+                </a>
+              )}
             </div>
           ))}
         </nav>
@@ -204,6 +213,7 @@ function Aplicacion() {
             />
           )}
           {modulo === 'historial' && <Historial />}
+          {modulo === 'admin' && <Admin />}
         </main>
       </div>
 

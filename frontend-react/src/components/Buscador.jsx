@@ -5,7 +5,12 @@ export function Buscador({ sectores, onElegir, onCerrar }) {
   const [texto, setTexto] = useState('');
   const entrada = useRef(null);
   const consulta = texto.trim().toLowerCase();
-  const lista = sectores.filter((sector) => !consulta || sector.nombre.toLowerCase().includes(consulta)).slice(0, 8);
+  const lista = sectores.filter((sector) => {
+    if (!consulta) return true;
+    const vista = (sector.nombre_vista || sector.nombre || '').toLowerCase();
+    const codelco = (sector.nombre || '').toLowerCase();
+    return vista.includes(consulta) || codelco.includes(consulta);
+  }).slice(0, 8);
 
   useEffect(() => {
     entrada.current?.focus();
@@ -39,7 +44,7 @@ export function Buscador({ sectores, onElegir, onCerrar }) {
           {lista.map((sector) => (
             <li key={sector.nombre}>
               <button type="button" onClick={() => onElegir(sector.nombre)}>
-                <span>{sector.nombre}</span>
+                <span>{sector.nombre_vista || sector.nombre}</span>
                 <span className={`badge ${sector.estado}`}>{sector.estado_label}</span>
               </button>
             </li>

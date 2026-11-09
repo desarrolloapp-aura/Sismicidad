@@ -95,7 +95,7 @@ export function Resumen({ reporte, error, onAbrir }) {
                   <Icono size={14} className="">{sector.estado === 'danger' ? TRAZOS.alerta : TRAZOS.ok}</Icono>
                 </span>
                 <div className="fila-texto">
-                  <p>{sector.nombre}</p>
+                  <p>{sector.nombre_vista || sector.nombre}</p>
                   <small>
                     {sector.estado_label} · Frec. 24 h: {mostrar(sector.frec_24h)} · 7 días: {mostrar(sector.frec_7d)}
                   </small>
@@ -132,7 +132,7 @@ export function Resumen({ reporte, error, onAbrir }) {
                 {alertas.slice(0, 5).map((sector) => (
                   <li key={sector.nombre}>
                     <span className="badge danger">{sector.estado_label}</span>
-                    <span>{sector.nombre}</span>
+                    <span>{sector.nombre_vista || sector.nombre}</span>
                   </li>
                 ))}
               </ul>

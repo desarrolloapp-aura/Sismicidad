@@ -1,0 +1,14 @@
+﻿Paquete de cierre del Sistema de Sismicidad (Aura Ingeniería).
+
+Estado al 2026-11 (resumen):
+- Web en producción: https://sismicidad.desarrolloapp.workers.dev
+- Código y documentación viva: https://github.com/desarrolloapp-aura/Sismicidad
+  (README.md y carpeta docs/ del repositorio)
+
+Incluye:
+- Lectura Codelco desde PC de mina + túnel Cloudflare
+- Respaldo en la página si se corta el puente
+- Muro de gráficos y administración de polígonos por dispositivo
+
+Detalle operativo y arquitectura: ver docs/ en el repo GitHub.
+Los informes de avance en 03. Avances/ complementan este cierre.

@@ -1,10 +1,12 @@
 $ErrorActionPreference = "Stop"
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$aqui = Split-Path -Parent $MyInvocation.MyCommand.Path
+$root = if ((Split-Path -Leaf $aqui) -eq "arranque") { Split-Path -Parent $aqui } else { $aqui }
 Set-Location $root
 
 $pagina = "https://sismicidad.desarrolloapp.workers.dev"
 $secretoPath = Join-Path $root "puente.secreto"
-$cloudflared = Join-Path $root "cloudflared.exe"
+$cloudflared = Join-Path $aqui "cloudflared.exe"
+if (-not (Test-Path $cloudflared)) { $cloudflared = Join-Path $root "cloudflared.exe" }
 $log = Join-Path $env:TEMP "puente-cloudflared.log"
 
 Write-Host ""

@@ -11,6 +11,7 @@ from typing import Optional, List
 class SectorEstado(BaseModel):
     """Estado actual de un polígono sísmico (salida del lector Codelco)."""
     nombre: str
+    nombre_vista: Optional[str] = None
     estado: str                  # "ok" | "danger"
     estado_label: str            # "Centro" | "Inferior" | "Superior"
     grupo: str = "Esta etapa"

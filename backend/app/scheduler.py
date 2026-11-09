@@ -5,7 +5,7 @@ y guarda los resultados en la base de datos SQLite.
 """
 
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
@@ -16,6 +16,7 @@ from app.schemas import ReporteActual, SectorSnapshotOut
 from app.scraper import scrapear_geovita
 from app.database import SessionLocal
 from app.models import SectorSnapshot
+from app.sala_log import anotar_sala
 from app.tendencia import leer_tendencia
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,9 @@ logger = logging.getLogger(__name__)
 # Cache en memoria con el último reporte (para responder instantáneo sin DB)
 ultimo_reporte = None
 ultimo_respaldo = None
+_historial_recuperado = False
+_siguiente_lectura = None
+_sin_red_codelco = False
 scheduler = AsyncIOScheduler()
 
 CAMPOS_RESPALDO = (
@@ -79,13 +83,87 @@ async def _traer_desde_puente() -> ReporteActual:
     return reporte
 
 
+def _momento(valor):
+    if isinstance(valor, datetime):
+        return valor.replace(tzinfo=None)
+    if not valor:
+        return None
+    try:
+        return datetime.fromisoformat(str(valor).replace("Z", ""))
+    except ValueError:
+        return None
+
+
+async def _recuperar_historial():
+    """Una carpeta nueva trae la base vacía. Antes de leer, copia lo que la página ya guardó."""
+    global _historial_recuperado
+    if _historial_recuperado or MODO != "mina" or not PUENTE_SECRETO:
+        return
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as cliente:
+            respuesta = await cliente.get(
+                f"{PAGINA_URL}/api/respaldo",
+                headers={"x-puente-secreto": PUENTE_SECRETO},
+            )
+            respuesta.raise_for_status()
+        filas = respuesta.json().get("filas") or []
+    except Exception as e:
+        logger.error(f"No se pudo recuperar el historial de la página: {e}")
+        return
+
+    _historial_recuperado = True
+    if not filas:
+        return
+
+    db = SessionLocal()
+    try:
+        existentes = {
+            (nombre, _momento(ts))
+            for nombre, ts in db.query(SectorSnapshot.nombre, SectorSnapshot.timestamp_scraping).all()
+        }
+        nuevos = 0
+        for fila in filas:
+            nombre = fila.get("nombre")
+            momento = _momento(fila.get("timestamp_scraping"))
+            if not nombre or momento is None or not fila.get("estado") or not fila.get("estado_label"):
+                continue
+            if (nombre, momento) in existentes:
+                continue
+            db.add(SectorSnapshot(
+                nombre=nombre,
+                estado=fila["estado"],
+                estado_label=fila["estado_label"],
+                frec_24h=fila.get("frec_24h"),
+                mag_min_24h=fila.get("mag_min_24h"),
+                mag_max_24h=fila.get("mag_max_24h"),
+                frec_7d=fila.get("frec_7d"),
+                timestamp_scraping=momento,
+            ))
+            existentes.add((nombre, momento))
+            nuevos += 1
+        db.commit()
+        if nuevos:
+            logger.info("Historial recuperado de la página: %s lecturas", nuevos)
+    except Exception as e:
+        db.rollback()
+        logger.error(f"No se pudo guardar el historial recuperado: {e}")
+    finally:
+        db.close()
+
+
 async def _ejecutar_scraping():
     """
     Tarea periódica: lee Codelco y guarda el resultado en SQLite.
+    Con la red caída reintenta en 10 segundos. Si la lectura salió, espera un minuto.
     """
-    global ultimo_reporte
+    global ultimo_reporte, _siguiente_lectura, _sin_red_codelco
+    ahora = datetime.now(timezone.utc)
+    if _siguiente_lectura and ahora < _siguiente_lectura:
+        return
 
     try:
+        if MODO == "mina":
+            await _recuperar_historial()
         if MODO == "oficina":
             reporte = await _traer_desde_puente()
         else:
@@ -94,7 +172,14 @@ async def _ejecutar_scraping():
 
         if reporte.fuente != "en_vivo":
             logger.info("Se usa la copia guardada; no se agrega al historial.")
+            _sin_red_codelco = True
+            anotar_sala("Sin red Codelco. Reconectando en 10 s.")
+            _siguiente_lectura = ahora + timedelta(seconds=10)
             return
+
+        if _sin_red_codelco:
+            anotar_sala("Red Codelco recuperada.")
+            _sin_red_codelco = False
 
         db = SessionLocal()
         try:
@@ -134,8 +219,12 @@ async def _ejecutar_scraping():
 
         if MODO == "mina":
             await _enviar_respaldo(reporte)
+        _siguiente_lectura = datetime.now(timezone.utc) + timedelta(seconds=60)
 
     except Exception as e:
+        _siguiente_lectura = datetime.now(timezone.utc) + timedelta(seconds=10)
+        _sin_red_codelco = True
+        anotar_sala("Sin red Codelco. Reconectando en 10 s.")
         logger.error(f"❌ Error en scraping: {e}")
 
 
@@ -145,17 +234,17 @@ def get_ultimo_reporte():
 
 
 def iniciar_scheduler():
-    """Inicia el scheduler con intervalo de 60 segundos."""
+    """Revisa seguido. La lectura real queda cada minuto, y a los 10 segundos si se cortó."""
     scheduler.add_job(
         _ejecutar_scraping,
-        trigger=IntervalTrigger(seconds=60),
+        trigger=IntervalTrigger(seconds=10),
         id="lectura_codelco",
         name="Lectura Codelco",
         replace_existing=True,
-        max_instances=1,        # Evita ejecuciones solapadas
+        max_instances=1,
     )
     scheduler.start()
-    logger.info("🕐 Scheduler iniciado — scraping cada 60 segundos")
+    logger.info("Scheduler iniciado — reintento a los 10 segundos si se corta la red")
 
 
 def detener_scheduler():

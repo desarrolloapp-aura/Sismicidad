@@ -149,10 +149,11 @@ export function GraficoReal({ puntos, alto = 420, compacto = false }) {
   const magnitud = compacto
     ? { ...magnitudCompleta, marcas: magnitudCompleta.marcas.filter((_, i) => i % 2 === 0) }
     : magnitudCompleta;
+  const altura = alto === '100%' ? '100%' : alto;
 
   return (
-    <ResponsiveContainer width="100%" height={alto}>
-      <ComposedChart data={puntos} margin={compacto ? { top: 8, right: 8, left: 0, bottom: dia ? 18 : 4 } : { top: 16, right: 24, left: 8, bottom: dia ? 8 : 4 }}>
+    <ResponsiveContainer width="100%" height={altura}>
+      <ComposedChart data={puntos} margin={compacto ? { top: 4, right: 4, left: 0, bottom: dia ? 14 : 0 } : { top: 16, right: 24, left: 8, bottom: dia ? 8 : 4 }}>
         <CartesianGrid horizontal={false} stroke="#7b8794" strokeDasharray="2 4" />
         <XAxis
           dataKey="t"
@@ -162,17 +163,17 @@ export function GraficoReal({ puntos, alto = 420, compacto = false }) {
           ticks={marcas}
           tickFormatter={formato}
           interval={0}
-          height={dia ? 52 : 32}
-          tickMargin={8}
-          tick={{ fill: TINTA, fontSize: compacto ? 11 : 12, fontWeight: 600 }}
+          height={compacto ? (dia ? 36 : 22) : (dia ? 52 : 32)}
+          tickMargin={compacto ? 4 : 8}
+          tick={{ fill: TINTA, fontSize: compacto ? 9 : 12, fontWeight: 600 }}
           stroke={TINTA}
-          label={dia ? { value: dia, position: 'insideBottom', offset: 0, fill: '#5c6b7a', fontSize: 12, fontWeight: 600 } : undefined}
+          label={dia && !compacto ? { value: dia, position: 'insideBottom', offset: 0, fill: '#5c6b7a', fontSize: 12, fontWeight: 600 } : undefined}
         />
         <YAxis
           yAxisId="frec"
-          tick={{ fill: TINTA, fontSize: compacto ? 11 : 12 }}
+          tick={{ fill: TINTA, fontSize: compacto ? 9 : 12 }}
           stroke={TINTA}
-          width={compacto ? 32 : 46}
+          width={compacto ? 26 : 46}
           allowDecimals={false}
           label={compacto ? undefined : { value: 'N° eventos', angle: -90, position: 'insideLeft', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
@@ -182,15 +183,16 @@ export function GraficoReal({ puntos, alto = 420, compacto = false }) {
           domain={magnitud.dominio}
           ticks={magnitud.marcas}
           allowDataOverflow
-          tick={{ fill: TINTA, fontSize: 11 }}
+          tick={{ fill: TINTA, fontSize: compacto ? 9 : 11 }}
           stroke={TINTA}
-          width={compacto ? 36 : 48}
+          width={compacto ? 28 : 48}
           label={compacto ? undefined : { value: 'Magnitud', angle: 90, position: 'insideRight', fill: TINTA, fontSize: 12, fontWeight: 600 }}
         />
         <Tooltip content={<TooltipReal />} />
-        <Legend wrapperStyle={{ fontSize: compacto ? 12 : 14, paddingTop: 8 }} />
-        <Line yAxisId="frec" type="stepAfter" dataKey="media7" name="Media 7 días" stroke="#1f3fd6" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
-        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Media diaria" stroke="#e02424" strokeWidth={2.4} dot={false} connectNulls isAnimationActive={false} />
+        {!compacto && <Legend wrapperStyle={{ fontSize: 14, paddingTop: 8 }} />}
+        {compacto && <Legend wrapperStyle={{ fontSize: 10, paddingTop: 2 }} />}
+        <Line yAxisId="frec" type="stepAfter" dataKey="media7" name="Media 7 días" stroke="#1f3fd6" strokeWidth={compacto ? 1.8 : 2.4} dot={false} connectNulls isAnimationActive={false} />
+        <Line yAxisId="frec" type="stepAfter" dataKey="frec" name="Media diaria" stroke="#e02424" strokeWidth={compacto ? 1.8 : 2.4} dot={false} connectNulls isAnimationActive={false} />
         <Scatter yAxisId="mag" dataKey="magnitud" name="Magnitud máxima" fill="#1f8a2e" stroke="#0d3d14" shape="triangle" isAnimationActive={false} />
       </ComposedChart>
     </ResponsiveContainer>

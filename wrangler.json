@@ -16,5 +16,12 @@
       "binding": "DATOS",
       "id": "dff12494a72f435889ca1e30af8b0cb1"
     }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sismicidad-lecturas",
+      "database_id": "efb5c3b7-b1e4-4ca9-979f-46e5bb4a0a4f"
+    }
   ]
 }

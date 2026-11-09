@@ -1,15 +1,15 @@
-"""Polígonos que Aura debe vigilar, en el orden en que se muestran."""
+"""Polígonos que Aura debe vigilar, en el orden en que se muestran.
+
+nombre: exactamente como aparece en la tabla Codelco (lectura).
+nombre_vista: como se muestra en pantalla (GeoVita / sala). Si no va, se usa nombre.
+"""
 
 POLIGONOS = [
     {
         "nombre": "Bajo Diamante Esmeralda",
+        "nombre_vista": "Bloque Bajo Diamante",
         "grupo": "Esta etapa",
         "principal": True,
-    },
-    {
-        "nombre": "Esmeralda Panel 1",
-        "grupo": "Esta etapa",
-        "principal": False,
     },
     {
         "nombre": "Esmeralda Bloque 1",
@@ -17,12 +17,45 @@ POLIGONOS = [
         "principal": False,
     },
     {
+        "nombre": "Esmeralda Bloque 2 sobre UCL",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
+        "nombre": "Esmeralda Bloque 2 Bajo UCL (al Norte XC48)",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
+        "nombre": "Esmeralda Bloque 2 Bajo UCL (al Sur XC48)",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
         "nombre": "Esmeralda Extension Norte Bloque 2",
+        "nombre_vista": "Bloque 2 Extensión Fw Norte",
         "grupo": "Esta etapa",
         "principal": False,
     },
     {
         "nombre": "Esmeralda Extension Fw Bloque 2",
+        "nombre_vista": "Bloque 2 Extensión Fw Sur",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
+        "nombre": "Esmeralda Poligono Desarrollo Bloque6",
+        "nombre_vista": "Esmeralda Bloque 6",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
+        "nombre": "Esmeralda Sur",
+        "grupo": "Esta etapa",
+        "principal": False,
+    },
+    {
+        "nombre": "Esmeralda Panel 1",
         "grupo": "Esta etapa",
         "principal": False,
     },
@@ -77,3 +110,12 @@ def buscar_poligono(nombre_pagina: str):
         if conocido in clave or clave in conocido:
             return ficha
     return None
+
+
+def nombre_visible(ficha_o_nombre) -> str:
+    if isinstance(ficha_o_nombre, dict):
+        return ficha_o_nombre.get("nombre_vista") or ficha_o_nombre["nombre"]
+    ficha = _INDICE.get(_norm(ficha_o_nombre))
+    if ficha:
+        return ficha.get("nombre_vista") or ficha["nombre"]
+    return ficha_o_nombre

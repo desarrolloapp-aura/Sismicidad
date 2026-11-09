@@ -35,7 +35,8 @@ export function Monitoreo({ sectores, actualizado, busqueda, onBusqueda: setBusq
   const lista = sectores
     .filter((sector) => {
       const texto = busqueda.trim().toLowerCase();
-      const coincide = !texto || sector.nombre.toLowerCase().includes(texto);
+      const vista = (sector.nombre_vista || sector.nombre || '').toLowerCase();
+      const coincide = !texto || vista.includes(texto) || sector.nombre.toLowerCase().includes(texto);
       const estadoOk = estado === 'todos' || sector.estado === estado;
       return coincide && estadoOk;
     })
@@ -119,7 +120,7 @@ function Tabla({ sectores, orden, onOrden, actualizado }) {
         <tbody>
           {sectores.map((sector) => (
             <tr key={sector.nombre}>
-              <th scope="row">{sector.nombre}</th>
+              <th scope="row">{sector.nombre_vista || sector.nombre}</th>
               <td><span className={`badge ${sector.estado}`}>{sector.estado_label}</span></td>
               <td>{mostrar(sector.frec_24h)}</td>
               <td>{mostrar(sector.frec_7d)}</td>
